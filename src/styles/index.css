@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-source text-dark-gray;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-playfair;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply px-6 py-3 rounded-md font-semibold transition-all duration-300;
+  }
+
+  .btn-primary {
+    @apply bg-prussian-blue text-ivory hover:bg-opacity-90;
+  }
+
+  .btn-secondary {
+    @apply bg-ivory text-prussian-blue border-2 border-prussian-blue hover:bg-prussian-blue hover:text-ivory;
+  }
+
+  .btn-accent {
+    @apply bg-imperial-gold text-dark-gray hover:bg-opacity-90;
+  }
+
+  .card {
+    @apply bg-ivory rounded-lg shadow-lg p-6 transition-all duration-300 hover:shadow-xl;
+  }
+
+  .nav-link {
+    @apply text-ivory hover:text-imperial-gold transition-colors duration-300;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-ivory;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-prussian-blue rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-opacity-80;
+} 

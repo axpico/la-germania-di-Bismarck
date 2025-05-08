@@ -7,13 +7,23 @@ export default {
   theme: {
     extend: {
       colors: {
-        'prussian-blue': '#003366',
-        'imperial-gold': '#D4AF37',
-        'ivory': '#FFFFF0',
-        'burgundy': '#800020',
-        'forest-green': '#228B22',
-        'warm-gray': '#8B7355',
-        'cream': '#F5F5DC',
+        // Primary colors
+        'prussian-blue': '#1B365D', // Deeper, richer Prussian blue
+        'imperial-gold': '#C5A572', // More muted, elegant gold
+        'ivory': '#F5F2E9', // Warmer, creamier ivory
+        
+        // Secondary colors
+        'burgundy': '#8B1A3B', // Rich, deep burgundy
+        'forest-green': '#2C4F43', // Muted, sophisticated green
+        'warm-gray': '#6B5B4D', // Warm, earthy gray
+        
+        // Accent colors
+        'cream': '#F8F4E3', // Soft cream
+        'dark-gray': '#2C2C2C', // Deep, rich dark gray
+        'sepia': '#704214', // Warm sepia tone
+        'silver': '#C0C0C0', // Metallic silver
+        'bronze': '#CD7F32', // Warm bronze
+        'parchment': '#F4E4BC', // Aged parchment color
       },
       fontFamily: {
         'playfair': ['"Playfair Display"', 'serif'],

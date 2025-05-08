@@ -1,32 +1,80 @@
 # Design System - La Germania di Bismarck
 
-## Palette Colori
+## Color Palette
 
-### Colori Principali
-- Prussian Blue (#003366) - Colore principale, richiama l'uniforme prussiana
-- Gold (#D4AF37) - Accenti e dettagli, richiama l'oro imperiale
-- Ivory (#FFFFF0) - Sfondo principale, per una migliore leggibilità
-- Dark Gray (#333333) - Testo principale
+### Primary Colors
+- **Prussian Blue** (`#1B365D`): A deep, rich blue that represents authority and tradition. Used for primary actions and key UI elements.
+- **Imperial Gold** (`#C5A572`): A muted, elegant gold that adds sophistication. Used for accents and highlights.
+- **Ivory** (`#F5F2E9`): A warm, creamy background color that provides a soft, historical feel.
 
-### Colori Secondari
-- Burgundy (#800020) - Elementi di contrasto
-- Forest Green (#228B22) - Elementi naturali e mappe
-- Warm Gray (#8B7355) - Elementi neutri
-- Cream (#F5F5DC) - Sfondo secondario
+### Secondary Colors
+- **Burgundy** (`#8B1A3B`): A rich, deep red that adds historical depth. Used for secondary actions and important UI elements.
+- **Forest Green** (`#2C4F43`): A muted, sophisticated green that represents stability. Used for success states and nature-related elements.
+- **Warm Gray** (`#6B5B4D`): An earthy gray that provides depth and contrast. Used for text and subtle UI elements.
 
-## Tipografia
+### Accent Colors
+- **Cream** (`#F8F4E3`): A soft cream for subtle backgrounds and hover states.
+- **Dark Gray** (`#2C2C2C`): A deep, rich gray for text and strong contrast elements.
+- **Sepia** (`#704214`): A warm sepia tone for historical elements and decorative features.
+- **Silver** (`#C0C0C0`): A metallic silver for modern accents and interactive elements.
+- **Bronze** (`#CD7F32`): A warm bronze for special highlights and premium features.
+- **Parchment** (`#F4E4BC`): An aged parchment color for historical content backgrounds.
 
-### Font Principali
-- Headings: "Playfair Display" - Font serif elegante per i titoli
-- Body: "Source Sans Pro" - Font sans-serif leggibile per il testo
-- Accents: "Crimson Text" - Font serif per citazioni e note
+## Typography
 
-### Dimensioni Font
-- H1: 48px
-- H2: 36px
-- H3: 24px
-- Body: 16px
+### Font Families
+- **Playfair Display**: Used for headings and important titles
+- **Source Sans Pro**: Used for body text and general content
+- **Crimson Text**: Used for quotes and special content
+
+### Font Sizes
+- Base: 16px
+- Headings: 24px - 48px
 - Small text: 14px
+- Large text: 18px
+
+## Components
+
+### Buttons
+- **Primary Button**: Prussian Blue background with Ivory text
+- **Secondary Button**: Ivory background with Prussian Blue border and text
+- **Accent Button**: Imperial Gold background with Dark Gray text
+
+### Cards
+- Background: Ivory
+- Border: Subtle shadow
+- Hover effect: Enhanced shadow and slight scale
+
+### Navigation
+- Background: Prussian Blue
+- Text: Ivory
+- Hover: Imperial Gold
+
+## Spacing
+- Base unit: 4px
+- Common spacing: 8px, 16px, 24px, 32px, 48px
+- Large spacing: 64px, 96px
+
+## Animations
+- **Fade In**: Subtle fade for content appearance
+- **Slide Up**: Smooth upward motion for content reveals
+- Duration: 300ms - 500ms
+- Easing: ease-in-out
+
+## Design Principles
+1. **Historical Authenticity**: Design elements should reflect the Bismarck era while maintaining modern usability
+2. **Elegant Simplicity**: Clean layouts with sophisticated details
+3. **Hierarchical Clarity**: Clear visual hierarchy through typography and spacing
+4. **Responsive Design**: Fluid layouts that work across all device sizes
+5. **Accessible Contrast**: Ensuring all text meets WCAG 2.1 contrast requirements
+
+## Usage Guidelines
+- Use primary colors for main UI elements and actions
+- Apply secondary colors for supporting elements
+- Use accent colors sparingly for emphasis
+- Maintain consistent spacing throughout the interface
+- Ensure all interactive elements have clear hover and active states
+- Use animations purposefully to enhance user experience
 
 ## Layout
 

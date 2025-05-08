@@ -7,6 +7,7 @@ import InternalPolitics from './pages/InternalPolitics'
 import ForeignPolicy from './pages/ForeignPolicy'
 import Revanchism from './pages/Revanchism'
 import Radicalism from './pages/Radicalism'
+import Bismarck from './pages/Bismarck'
 
 const PageTransition = ({ children }: { children: React.ReactNode }) => (
   <motion.div
@@ -32,6 +33,14 @@ function App() {
                 element={
                   <PageTransition>
                     <Home />
+                  </PageTransition>
+                }
+              />
+              <Route
+                path="/bismarck"
+                element={
+                  <PageTransition>
+                    <Bismarck />
                   </PageTransition>
                 }
               />

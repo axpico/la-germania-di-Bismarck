@@ -15,6 +15,9 @@ export default function Navbar() {
           
           {/* Desktop menu */}
           <div className="hidden md:flex space-x-8">
+            <Link to="/bismarck" className="hover:text-imperial-gold transition-colors">
+              Bismarck
+            </Link>
             <Link to="/politica-interna" className="hover:text-imperial-gold transition-colors">
               Politica Interna
             </Link>
@@ -70,6 +73,13 @@ export default function Navbar() {
               className="md:hidden"
             >
               <div className="space-y-1 px-2 pb-3 pt-2">
+                <Link
+                  to="/bismarck"
+                  className="block px-3 py-2 hover:text-imperial-gold transition-colors"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Bismarck
+                </Link>
                 <Link
                   to="/politica-interna"
                   className="block px-3 py-2 hover:text-imperial-gold transition-colors"

@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Chrono } from 'react-chrono';
-import { FaCrown, FaScroll, FaBalanceScale, FaMapMarkedAlt } from 'react-icons/fa';
+import { FaCrown, FaScroll, FaBalanceScale, FaMapMarkedAlt, FaShieldAlt, FaHandshake, FaBook } from 'react-icons/fa';
 
 const Bismarck: React.FC = () => {
   const timelineItems = [
@@ -12,16 +12,46 @@ const Bismarck: React.FC = () => {
       cardDetailedText: "Otto von Bismarck nasce in una famiglia aristocratica prussiana."
     },
     {
+      title: "1847",
+      cardTitle: "Inizio della Carriera Politica",
+      cardSubtitle: "Berlino",
+      cardDetailedText: "Bismarck viene eletto al Parlamento Prussiano come rappresentante conservatore."
+    },
+    {
       title: "1862",
       cardTitle: "Cancelliere di Prussia",
       cardSubtitle: "Berlino",
       cardDetailedText: "Nominato Ministro-Presidente e Ministro degli Esteri della Prussia."
     },
     {
+      title: "1864",
+      cardTitle: "Guerra dei Ducati",
+      cardSubtitle: "Schleswig-Holstein",
+      cardDetailedText: "Bismarck guida la Prussia nella vittoriosa guerra contro la Danimarca."
+    },
+    {
+      title: "1866",
+      cardTitle: "Guerra Austro-Prussiana",
+      cardSubtitle: "Europa Centrale",
+      cardDetailedText: "La Prussia sconfigge l'Austria, consolidando il suo potere nella Confederazione Germanica."
+    },
+    {
+      title: "1870-71",
+      cardTitle: "Guerra Franco-Prussiana",
+      cardSubtitle: "Francia",
+      cardDetailedText: "La Prussia sconfigge la Francia, portando all'unificazione tedesca."
+    },
+    {
       title: "1871",
       cardTitle: "Unificazione Tedesca",
       cardSubtitle: "Versailles",
       cardDetailedText: "Proclamazione dell'Impero Tedesco e Bismarck diventa il primo Cancelliere."
+    },
+    {
+      title: "1878",
+      cardTitle: "Congresso di Berlino",
+      cardSubtitle: "Berlino",
+      cardDetailedText: "Bismarck media la pace tra le potenze europee, consolidando il suo ruolo di 'onesto mediatore'."
     },
     {
       title: "1890",
@@ -160,6 +190,85 @@ const Bismarck: React.FC = () => {
               Il suo approccio pragmatico alla politica estera e le sue riforme sociali hanno 
               lasciato un'impronta indelebile sulla storia europea.
             </p>
+          </div>
+        </motion.section>
+
+        {/* Diplomatic Achievements */}
+        <motion.section 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-16"
+        >
+          <h2 className="section-title text-warm-gray">Le Alleanze Diplomatiche</h2>
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="prose prose-lg">
+              <p className="text-warm-gray">
+                Bismarck creò un complesso sistema di alleanze per mantenere l'equilibrio di potere in Europa:
+              </p>
+              <ul className="list-disc pl-6 text-warm-gray">
+                <li>L'Alleanza dei Tre Imperatori (1873)</li>
+                <li>La Duplice Alleanza con l'Austria-Ungheria (1879)</li>
+                <li>La Triplice Alleanza con Austria-Ungheria e Italia (1882)</li>
+                <li>Il Trattato di Riassicurazione con la Russia (1887)</li>
+              </ul>
+            </div>
+            <div className="relative">
+              <div className="absolute inset-0 bg-imperial-gold/10 transform -rotate-3" />
+              <img 
+                src="/images/bismarck-diplomacy.jpg" 
+                alt="Bismarck al Congresso di Berlino" 
+                className="relative rounded-lg shadow-xl"
+              />
+            </div>
+          </div>
+        </motion.section>
+
+        {/* Social Reforms */}
+        <motion.section 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-16"
+        >
+          <h2 className="section-title text-warm-gray">Le Riforme Sociali</h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="card group">
+              <FaShieldAlt className="text-4xl text-imperial-gold mb-4" />
+              <h3 className="text-xl font-playfair mb-2">Assicurazione Malattia</h3>
+              <p className="text-warm-gray">Primo sistema di assicurazione malattia obbligatoria (1883)</p>
+            </div>
+            <div className="card group">
+              <FaHandshake className="text-4xl text-imperial-gold mb-4" />
+              <h3 className="text-xl font-playfair mb-2">Assicurazione Infortuni</h3>
+              <p className="text-warm-gray">Protezione dei lavoratori contro gli infortuni sul lavoro (1884)</p>
+            </div>
+            <div className="card group">
+              <FaBook className="text-4xl text-imperial-gold mb-4" />
+              <h3 className="text-xl font-playfair mb-2">Istruzione</h3>
+              <p className="text-warm-gray">Riforma del sistema educativo e promozione della cultura tedesca</p>
+            </div>
+          </div>
+        </motion.section>
+
+        {/* Impact on Modern Europe */}
+        <motion.section 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-16"
+        >
+          <h2 className="section-title text-warm-gray">Impatto sull'Europa Moderna</h2>
+          <div className="bg-parchment p-8 rounded-lg border border-warm-gray/20">
+            <p className="text-warm-gray mb-4">
+              L'influenza di Bismarck sulla politica europea moderna è profonda e duratura:
+            </p>
+            <ul className="list-disc pl-6 text-warm-gray">
+              <li>Creazione del primo stato sociale moderno</li>
+              <li>Stabilimento di un sistema di alleanze che influenzò la geopolitica europea per decenni</li>
+              <li>Introduzione di riforme che ispirarono altri paesi europei</li>
+              <li>Definizione del concetto di "Realpolitik" nella diplomazia internazionale</li>
+            </ul>
           </div>
         </motion.section>
       </div>

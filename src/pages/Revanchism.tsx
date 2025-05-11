@@ -42,13 +42,40 @@ const Revanchism: React.FC = () => {
     }
   ];
 
+  const statistics = [
+    {
+      title: "Anni di Tensione",
+      icon: FaFlag,
+      value: "43",
+      description: "Dal 1871 al 1914, la Francia visse in attesa della rivincita"
+    },
+    {
+      title: "Territori Contesi",
+      icon: FaMapMarkedAlt,
+      value: "2",
+      description: "Alsazia e Lorena, simboli del revanscismo francese"
+    },
+    {
+      title: "Alleanze Formate",
+      icon: FaBalanceScale,
+      value: "3",
+      description: "Triplice Intesa, Triplice Alleanza, Alleanza Franco-Russa"
+    },
+    {
+      title: "Propagande",
+      icon: FaBook,
+      value: "100+",
+      description: "Opere, manifesti e articoli a sostegno della rivincita"
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-ivory">
       {/* Hero Section */}
       <motion.div 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className="relative h-[40vh] bg-prussian-blue overflow-hidden"
+        className="relative h-[50vh] bg-prussian-blue overflow-hidden"
       >
         <div className="absolute inset-0 bg-[url('/images/versailles-hall.jpg')] bg-cover bg-center opacity-20" />
         <div className="absolute inset-0 bg-gradient-to-b from-prussian-blue/80 to-prussian-blue" />
@@ -104,6 +131,32 @@ const Revanchism: React.FC = () => {
                 className="relative rounded-lg shadow-xl"
               />
             </div>
+          </div>
+        </motion.section>
+
+        {/* Statistics Section */}
+        <motion.section 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-16"
+        >
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {statistics.map((stat, index) => (
+              <motion.div
+                key={stat.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="bg-parchment p-6 rounded-lg shadow-lg border border-warm-gray/20"
+              >
+                <stat.icon className="text-4xl text-imperial-gold mb-4" />
+                <h3 className="text-xl font-playfair text-prussian-blue mb-2">{stat.title}</h3>
+                <p className="text-3xl font-bold text-warm-gray mb-2">{stat.value}</p>
+                <p className="text-warm-gray/80">{stat.description}</p>
+              </motion.div>
+            ))}
           </div>
         </motion.section>
 

@@ -1,44 +1,109 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { FaBalanceScale, FaHandshake, FaMapMarkedAlt, FaShieldAlt, FaChessKnight, FaGlobeEurope } from 'react-icons/fa';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FaBalanceScale, FaHandshake, FaMapMarkedAlt, FaShieldAlt, FaChessKnight, FaGlobeEurope, FaChartLine, FaBook, FaLandmark, FaFlag, FaShip } from 'react-icons/fa';
 
 const ForeignPolicy: React.FC = () => {
+  const [selectedPolicy, setSelectedPolicy] = useState<string | null>(null);
+
   const policies = [
     {
       title: "Sistema di Alleanze",
       icon: FaHandshake,
       description: "La rete di alleanze per mantenere l'equilibrio europeo.",
-      details: "Bismarck creò un complesso sistema di alleanze per isolare la Francia e mantenere la pace in Europa. La Lega dei Tre Imperatori (1873) unì Germania, Austria-Ungheria e Russia. Il Trattato di Duplice Alleanza (1879) con l'Austria-Ungheria e la Triplice Alleanza (1882) con Italia e Austria-Ungheria formarono il nucleo della sua diplomazia. Queste alleanze furono progettate per prevenire una guerra su due fronti e mantenere la Germania al centro del sistema europeo."
+      details: "Bismarck creò un complesso sistema di alleanze per isolare la Francia e mantenere la pace in Europa. La Lega dei Tre Imperatori (1873) unì Germania, Austria-Ungheria e Russia. Il Trattato di Duplice Alleanza (1879) con l'Austria-Ungheria e la Triplice Alleanza (1882) con Italia e Austria-Ungheria formarono il nucleo della sua diplomazia. Queste alleanze furono progettate per prevenire una guerra su due fronti e mantenere la Germania al centro del sistema europeo.",
+      timeline: [
+        { year: "1873", event: "Lega dei Tre Imperatori" },
+        { year: "1879", event: "Trattato di Duplice Alleanza con l'Austria-Ungheria" },
+        { year: "1882", event: "Triplice Alleanza con Italia e Austria-Ungheria" },
+        { year: "1887", event: "Trattato di Riassicurazione con la Russia" }
+      ]
     },
     {
       title: "Isolamento della Francia",
       icon: FaShieldAlt,
       description: "La strategia per contenere la potenza francese.",
-      details: "Dopo la guerra franco-prussiana, Bismarck lavorò per isolare diplomaticamente la Francia. Attraverso il Congresso di Berlino (1878) e varie alleanze, impedì alla Francia di trovare alleati in Europa. La sua politica di 'saturazione' mirava a mantenere la Francia debole ma non umiliata, prevenendo così il revanscismo francese mentre la Germania consolidava la sua posizione di potenza continentale."
+      details: "Dopo la guerra franco-prussiana, Bismarck lavorò per isolare diplomaticamente la Francia. Attraverso il Congresso di Berlino (1878) e varie alleanze, impedì alla Francia di trovare alleati in Europa. La sua politica di 'saturazione' mirava a mantenere la Francia debole ma non umiliata, prevenendo così il revanscismo francese mentre la Germania consolidava la sua posizione di potenza continentale.",
+      timeline: [
+        { year: "1871", event: "Fine della guerra franco-prussiana" },
+        { year: "1875", event: "Crisi di guerra in vista" },
+        { year: "1878", event: "Congresso di Berlino" },
+        { year: "1882", event: "Triplice Alleanza per isolare la Francia" }
+      ]
     },
     {
       title: "Politica Coloniale",
       icon: FaMapMarkedAlt,
       description: "L'espansione dell'influenza tedesca oltre l'Europa.",
-      details: "Sebbene inizialmente scettico, Bismarck fu coinvolto nella corsa alle colonie per ragioni politiche interne. La Germania acquisì territori in Africa (Togo, Camerun, Africa Sud-Occidentale, Africa Orientale Tedesca) e nel Pacifico. Questa espansione coloniale, sebbene limitata rispetto ad altre potenze, servì a soddisfare le aspirazioni nazionaliste e a dimostrare lo status di grande potenza della Germania."
+      details: "Sebbene inizialmente scettico, Bismarck fu coinvolto nella corsa alle colonie per ragioni politiche interne. La Germania acquisì territori in Africa (Togo, Camerun, Africa Sud-Occidentale, Africa Orientale Tedesca) e nel Pacifico. Questa espansione coloniale, sebbene limitata rispetto ad altre potenze, servì a soddisfare le aspirazioni nazionaliste e a dimostrare lo status di grande potenza della Germania.",
+      timeline: [
+        { year: "1884", event: "Conferenza di Berlino sul Congo" },
+        { year: "1884", event: "Acquisizione di Togo e Camerun" },
+        { year: "1885", event: "Africa Orientale Tedesca" },
+        { year: "1890", event: "Trattato di Helgoland-Zanzibar" }
+      ]
     },
     {
       title: "Congresso di Berlino",
       icon: FaChessKnight,
       description: "La mediazione nella crisi balcanica.",
-      details: "Nel 1878, Bismarck ospitò il Congresso di Berlino per risolvere la crisi balcanica. Come 'onesto mediatore', riuscì a prevenire una guerra tra le grandi potenze, ridisegnando i confini balcanici e mantenendo l'equilibrio di potere. Questo congresso dimostrò la crescente influenza diplomatica della Germania e la capacità di Bismarck di mediare tra potenze rivali."
+      details: "Nel 1878, Bismarck ospitò il Congresso di Berlino per risolvere la crisi balcanica. Come 'onesto mediatore', riuscì a prevenire una guerra tra le grandi potenze, ridisegnando i confini balcanici e mantenendo l'equilibrio di potere. Questo congresso dimostrò la crescente influenza diplomatica della Germania e la capacità di Bismarck di mediare tra potenze rivali.",
+      timeline: [
+        { year: "1877", event: "Guerra russo-turca" },
+        { year: "1878", event: "Trattato di San Stefano" },
+        { year: "1878", event: "Congresso di Berlino" },
+        { year: "1878", event: "Trattato di Berlino" }
+      ]
     },
     {
       title: "Relazioni con la Russia",
       icon: FaGlobeEurope,
       description: "Il delicato equilibrio con l'Impero zarista.",
-      details: "Bismarck mantenne relazioni complesse con la Russia, alternando tra la Lega dei Tre Imperatori e il Trattato di Riassicurazione (1887). Cercò di prevenire un'alleanza franco-russa che avrebbe minacciato la Germania su due fronti. La sua diplomazia bilanciò le tensioni tra Russia e Austria-Ungheria nei Balcani, mantenendo la Germania come mediatore neutrale."
+      details: "Bismarck mantenne relazioni complesse con la Russia, alternando tra la Lega dei Tre Imperatori e il Trattato di Riassicurazione (1887). Cercò di prevenire un'alleanza franco-russa che avrebbe minacciato la Germania su due fronti. La sua diplomazia bilanciò le tensioni tra Russia e Austria-Ungheria nei Balcani, mantenendo la Germania come mediatore neutrale.",
+      timeline: [
+        { year: "1873", event: "Lega dei Tre Imperatori" },
+        { year: "1881", event: "Rinnovo della Lega dei Tre Imperatori" },
+        { year: "1887", event: "Trattato di Riassicurazione" },
+        { year: "1890", event: "Fine del Trattato di Riassicurazione" }
+      ]
     },
     {
       title: "Politica di Potenza",
       icon: FaBalanceScale,
       description: "L'equilibrio tra diplomazia e forza militare.",
-      details: "La politica estera di Bismarck combinò diplomazia abile e deterrenza militare. Mantenne un esercito forte come garanzia di sicurezza, ma preferì risolvere le crisi attraverso la diplomazia. La sua Realpolitik bilanciò gli interessi nazionali con la stabilità europea, evitando guerre maggiori durante il suo cancellierato."
+      details: "La politica estera di Bismarck combinò diplomazia abile e deterrenza militare. Mantenne un esercito forte come garanzia di sicurezza, ma preferì risolvere le crisi attraverso la diplomazia. La sua Realpolitik bilanciò gli interessi nazionali con la stabilità europea, evitando guerre maggiori durante il suo cancellierato.",
+      timeline: [
+        { year: "1871", event: "Unificazione tedesca" },
+        { year: "1875", event: "Crisi di guerra in vista" },
+        { year: "1887", event: "Crisi bulgara" },
+        { year: "1890", event: "Dimissioni di Bismarck" }
+      ]
+    }
+  ];
+
+  const statistics = [
+    {
+      title: "Anni di Pace",
+      icon: FaFlag,
+      value: "19",
+      description: "Anni di pace mantenuta in Europa durante il cancellierato"
+    },
+    {
+      title: "Trattati",
+      icon: FaHandshake,
+      value: "12",
+      description: "Trattati diplomatici principali negoziati"
+    },
+    {
+      title: "Colonie",
+      icon: FaShip,
+      value: "4",
+      description: "Principali colonie africane acquisite"
+    },
+    {
+      title: "Alleanze",
+      icon: FaChartLine,
+      value: "3",
+      description: "Principali alleanze strategiche create"
     }
   ];
 
@@ -48,7 +113,7 @@ const ForeignPolicy: React.FC = () => {
       <motion.div 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className="relative h-[40vh] bg-prussian-blue overflow-hidden"
+        className="relative h-[50vh] bg-prussian-blue overflow-hidden"
       >
         <div className="absolute inset-0 bg-[url('/images/congress-berlin.jpg')] bg-cover bg-center opacity-20" />
         <div className="absolute inset-0 bg-gradient-to-b from-prussian-blue/80 to-prussian-blue" />
@@ -67,6 +132,32 @@ const ForeignPolicy: React.FC = () => {
 
       {/* Main Content */}
       <div className="container mx-auto px-4 py-16">
+        {/* Statistics Section */}
+        <motion.section 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-16"
+        >
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {statistics.map((stat, index) => (
+              <motion.div
+                key={stat.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="bg-parchment p-6 rounded-lg shadow-lg border border-warm-gray/20"
+              >
+                <stat.icon className="text-4xl text-imperial-gold mb-4" />
+                <h3 className="text-xl font-playfair text-prussian-blue mb-2">{stat.title}</h3>
+                <p className="text-3xl font-bold text-warm-gray mb-2">{stat.value}</p>
+                <p className="text-warm-gray/80">{stat.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </motion.section>
+
         {/* Introduction */}
         <motion.section 
           initial={{ opacity: 0, y: 20 }}
@@ -123,12 +214,34 @@ const ForeignPolicy: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="card group hover:bg-parchment/50"
+                className="card group hover:bg-parchment/50 cursor-pointer"
+                onClick={() => setSelectedPolicy(selectedPolicy === policy.title ? null : policy.title)}
               >
                 <policy.icon className="text-4xl text-imperial-gold mb-4" />
                 <h3 className="text-xl font-playfair mb-2">{policy.title}</h3>
                 <p className="text-warm-gray mb-4">{policy.description}</p>
-                <p className="text-warm-gray/80 text-sm">{policy.details}</p>
+                <AnimatePresence>
+                  {selectedPolicy === policy.title && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      className="overflow-hidden"
+                    >
+                      <p className="text-warm-gray/80 text-sm mb-4">{policy.details}</p>
+                      <div className="border-t border-warm-gray/20 pt-4">
+                        <h4 className="text-sm font-semibold text-prussian-blue mb-2">Timeline</h4>
+                        <ul className="space-y-2">
+                          {policy.timeline.map((item) => (
+                            <li key={item.year} className="text-sm text-warm-gray/80">
+                              <span className="font-semibold">{item.year}:</span> {item.event}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </motion.div>
             ))}
           </div>

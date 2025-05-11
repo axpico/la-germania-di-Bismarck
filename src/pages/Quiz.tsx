@@ -73,6 +73,56 @@ const Quiz: React.FC = () => {
         "Partito Conservatore"
       ],
       correct: 1
+    },
+    {
+      question: "Quale fu l'anno della guerra austro-prussiana?",
+      options: ["1864", "1866", "1870", "1871"],
+      correct: 1
+    },
+    {
+      question: "Quale fu l'anno della guerra franco-prussiana?",
+      options: ["1866", "1870", "1871", "1878"],
+      correct: 1
+    },
+    {
+      question: "Quale fu l'anno della Kulturkampf?",
+      options: ["1871", "1872", "1873", "1874"],
+      correct: 2
+    },
+    {
+      question: "Quale fu l'anno della Triplice Alleanza?",
+      options: ["1879", "1880", "1881", "1882"],
+      correct: 3
+    },
+    {
+      question: "Quale fu l'anno della morte di Bismarck?",
+      options: ["1890", "1895", "1898", "1900"],
+      correct: 2
+    },
+    {
+      question: "Quale fu l'anno della proclamazione dell'Impero Tedesco?",
+      options: ["1866", "1870", "1871", "1878"],
+      correct: 2
+    },
+    {
+      question: "Quale fu l'anno della Kulturkampf?",
+      options: ["1871", "1872", "1873", "1874"],
+      correct: 2
+    },
+    {
+      question: "Quale fu l'anno della Triplice Alleanza?",
+      options: ["1879", "1880", "1881", "1882"],
+      correct: 3
+    },
+    {
+      question: "Quale fu l'anno della morte di Bismarck?",
+      options: ["1890", "1895", "1898", "1900"],
+      correct: 2
+    },
+    {
+      question: "Quale fu l'anno della proclamazione dell'Impero Tedesco?",
+      options: ["1866", "1870", "1871", "1878"],
+      correct: 2
     }
   ];
 

@@ -1,286 +1,317 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { FaBalanceScale, FaHandshake, FaMapMarkedAlt, FaShieldAlt, FaChessKnight, FaGlobeEurope, FaChartLine, FaBook, FaLandmark, FaFlag, FaShip } from 'react-icons/fa';
+import React, { useEffect, useRef } from 'react';
+import { motion, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion';
+import { FaGlobeEurope, FaHandshake, FaBalanceScale, FaShieldAlt, FaMapMarkedAlt, FaChessKnight, FaCrown } from 'react-icons/fa';
 
 const ForeignPolicy: React.FC = () => {
-  const [selectedPolicy, setSelectedPolicy] = useState<string | null>(null);
+  const { scrollY } = useScroll();
+  const y = useTransform(scrollY, [0, 500], [0, 150]);
+  const opacity = useTransform(scrollY, [0, 300], [1, 0]);
+  const scale = useTransform(scrollY, [0, 300], [1, 0.95]);
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  const policies = [
-    {
-      title: "Sistema di Alleanze",
-      icon: FaHandshake,
-      description: "La rete di alleanze per mantenere l'equilibrio europeo.",
-      details: "Bismarck creò un complesso sistema di alleanze per isolare la Francia e mantenere la pace in Europa. La Lega dei Tre Imperatori (1873) unì Germania, Austria-Ungheria e Russia. Il Trattato di Duplice Alleanza (1879) con l'Austria-Ungheria e la Triplice Alleanza (1882) con Italia e Austria-Ungheria formarono il nucleo della sua diplomazia. Queste alleanze furono progettate per prevenire una guerra su due fronti e mantenere la Germania al centro del sistema europeo.",
-      timeline: [
-        { year: "1873", event: "Lega dei Tre Imperatori" },
-        { year: "1879", event: "Trattato di Duplice Alleanza con l'Austria-Ungheria" },
-        { year: "1882", event: "Triplice Alleanza con Italia e Austria-Ungheria" },
-        { year: "1887", event: "Trattato di Riassicurazione con la Russia" }
-      ]
-    },
-    {
-      title: "Isolamento della Francia",
-      icon: FaShieldAlt,
-      description: "La strategia per contenere la potenza francese.",
-      details: "Dopo la guerra franco-prussiana, Bismarck lavorò per isolare diplomaticamente la Francia. Attraverso il Congresso di Berlino (1878) e varie alleanze, impedì alla Francia di trovare alleati in Europa. La sua politica di 'saturazione' mirava a mantenere la Francia debole ma non umiliata, prevenendo così il revanscismo francese mentre la Germania consolidava la sua posizione di potenza continentale.",
-      timeline: [
-        { year: "1871", event: "Fine della guerra franco-prussiana" },
-        { year: "1875", event: "Crisi di guerra in vista" },
-        { year: "1878", event: "Congresso di Berlino" },
-        { year: "1882", event: "Triplice Alleanza per isolare la Francia" }
-      ]
-    },
-    {
-      title: "Politica Coloniale",
-      icon: FaMapMarkedAlt,
-      description: "L'espansione dell'influenza tedesca oltre l'Europa.",
-      details: "Sebbene inizialmente scettico, Bismarck fu coinvolto nella corsa alle colonie per ragioni politiche interne. La Germania acquisì territori in Africa (Togo, Camerun, Africa Sud-Occidentale, Africa Orientale Tedesca) e nel Pacifico. Questa espansione coloniale, sebbene limitata rispetto ad altre potenze, servì a soddisfare le aspirazioni nazionaliste e a dimostrare lo status di grande potenza della Germania.",
-      timeline: [
-        { year: "1884", event: "Conferenza di Berlino sul Congo" },
-        { year: "1884", event: "Acquisizione di Togo e Camerun" },
-        { year: "1885", event: "Africa Orientale Tedesca" },
-        { year: "1890", event: "Trattato di Helgoland-Zanzibar" }
-      ]
-    },
-    {
-      title: "Congresso di Berlino",
-      icon: FaChessKnight,
-      description: "La mediazione nella crisi balcanica.",
-      details: "Nel 1878, Bismarck ospitò il Congresso di Berlino per risolvere la crisi balcanica. Come 'onesto mediatore', riuscì a prevenire una guerra tra le grandi potenze, ridisegnando i confini balcanici e mantenendo l'equilibrio di potere. Questo congresso dimostrò la crescente influenza diplomatica della Germania e la capacità di Bismarck di mediare tra potenze rivali.",
-      timeline: [
-        { year: "1877", event: "Guerra russo-turca" },
-        { year: "1878", event: "Trattato di San Stefano" },
-        { year: "1878", event: "Congresso di Berlino" },
-        { year: "1878", event: "Trattato di Berlino" }
-      ]
-    },
-    {
-      title: "Relazioni con la Russia",
-      icon: FaGlobeEurope,
-      description: "Il delicato equilibrio con l'Impero zarista.",
-      details: "Bismarck mantenne relazioni complesse con la Russia, alternando tra la Lega dei Tre Imperatori e il Trattato di Riassicurazione (1887). Cercò di prevenire un'alleanza franco-russa che avrebbe minacciato la Germania su due fronti. La sua diplomazia bilanciò le tensioni tra Russia e Austria-Ungheria nei Balcani, mantenendo la Germania come mediatore neutrale.",
-      timeline: [
-        { year: "1873", event: "Lega dei Tre Imperatori" },
-        { year: "1881", event: "Rinnovo della Lega dei Tre Imperatori" },
-        { year: "1887", event: "Trattato di Riassicurazione" },
-        { year: "1890", event: "Fine del Trattato di Riassicurazione" }
-      ]
-    },
-    {
-      title: "Politica di Potenza",
-      icon: FaBalanceScale,
-      description: "L'equilibrio tra diplomazia e forza militare.",
-      details: "La politica estera di Bismarck combinò diplomazia abile e deterrenza militare. Mantenne un esercito forte come garanzia di sicurezza, ma preferì risolvere le crisi attraverso la diplomazia. La sua Realpolitik bilanciò gli interessi nazionali con la stabilità europea, evitando guerre maggiori durante il suo cancellierato.",
-      timeline: [
-        { year: "1871", event: "Unificazione tedesca" },
-        { year: "1875", event: "Crisi di guerra in vista" },
-        { year: "1887", event: "Crisi bulgara" },
-        { year: "1890", event: "Dimissioni di Bismarck" }
-      ]
-    }
-  ];
+  // Smooth spring animation for mouse movement
+  const springConfig = { damping: 20, stiffness: 300 };
+  const springX = useSpring(mouseX, springConfig);
+  const springY = useSpring(mouseY, springConfig);
 
-  const statistics = [
-    {
-      title: "Anni di Pace",
-      icon: FaFlag,
-      value: "19",
-      description: "Anni di pace mantenuta in Europa durante il cancellierato"
-    },
-    {
-      title: "Trattati",
-      icon: FaHandshake,
-      value: "12",
-      description: "Trattati diplomatici principali negoziati"
-    },
-    {
-      title: "Colonie",
-      icon: FaShip,
-      value: "4",
-      description: "Principali colonie africane acquisite"
-    },
-    {
-      title: "Alleanze",
-      icon: FaChartLine,
-      value: "3",
-      description: "Principali alleanze strategiche create"
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (containerRef.current) {
+        const rect = containerRef.current.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        mouseX.set(x);
+        mouseY.set(y);
+      }
+    };
+
+    const container = containerRef.current;
+    if (container) {
+      container.addEventListener('mousemove', handleMouseMove);
     }
-  ];
+
+    return () => {
+      if (container) {
+        container.removeEventListener('mousemove', handleMouseMove);
+      }
+    };
+  }, [mouseX, mouseY]);
 
   return (
-    <div className="min-h-screen bg-ivory">
+    <div className="min-h-screen bg-gradient-to-br from-ivory via-ivory/95 to-ivory/90">
       {/* Hero Section */}
       <motion.div 
+        ref={containerRef}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className="relative h-[50vh] bg-prussian-blue overflow-hidden"
+        className="relative h-[80vh] overflow-hidden perspective-1000"
       >
-        <div className="absolute inset-0 bg-[url('/images/congress-berlin.jpg')] bg-cover bg-center opacity-20" />
-        <div className="absolute inset-0 bg-gradient-to-b from-prussian-blue/80 to-prussian-blue" />
+        <motion.div 
+          style={{ y, opacity, scale }}
+          className="absolute inset-0 bg-[url('/images/congress-berlin.jpg')] bg-cover bg-center"
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-prussian-blue/95 via-prussian-blue/85 to-prussian-blue/75" />
+        
+        {/* Interactive 3D background elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          {[...Array(15)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-24 h-24 rounded-full bg-imperial-gold/10"
+              style={{
+                x: springX,
+                y: springY,
+                rotateX: useTransform(springX, [0, 1000], [0, 45]),
+                rotateY: useTransform(springY, [0, 1000], [0, 45]),
+              }}
+              initial={{ 
+                x: Math.random() * window.innerWidth,
+                y: Math.random() * window.innerHeight,
+                scale: 0,
+                rotate: Math.random() * 360
+              }}
+              animate={{ 
+                x: Math.random() * window.innerWidth,
+                y: Math.random() * window.innerHeight,
+                scale: [0, 1, 0],
+                rotate: [0, 360]
+              }}
+              transition={{
+                duration: 15 + i * 2,
+                repeat: Infinity,
+                ease: "linear"
+              }}
+            />
+          ))}
+        </div>
+
         <div className="relative container mx-auto px-4 h-full flex items-center">
           <motion.div 
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="text-ivory"
+            className="backdrop-blur-md bg-white/10 p-12 rounded-[2rem] border border-white/20 shadow-2xl transform-gpu"
+            style={{
+              rotateX: useTransform(springY, [0, 1000], [-5, 5]),
+              rotateY: useTransform(springX, [0, 1000], [-5, 5]),
+            }}
           >
-            <h1 className="text-4xl md:text-6xl font-playfair mb-4 text-ivory">Politica Estera</h1>
-            <p className="text-xl md:text-2xl font-crimson italic text-ivory">L'architetto dell'equilibrio europeo</p>
+            <motion.h1 
+              className="text-6xl md:text-8xl font-playfair mb-6 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-ivory via-imperial-gold to-ivory"
+              animate={{
+                backgroundPosition: ["0%", "100%"],
+              }}
+              transition={{
+                duration: 5,
+                repeat: Infinity,
+                repeatType: "reverse",
+              }}
+            >
+              Politica Estera
+            </motion.h1>
+            <motion.p 
+              className="text-2xl md:text-3xl font-crimson italic text-ivory/90"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.6 }}
+            >
+              L'equilibrio di potere in Europa
+            </motion.p>
           </motion.div>
         </div>
       </motion.div>
 
       {/* Main Content */}
-      <div className="container mx-auto px-4 py-16">
-        {/* Statistics Section */}
-        <motion.section 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-16"
-        >
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {statistics.map((stat, index) => (
-              <motion.div
-                key={stat.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="bg-parchment p-6 rounded-lg shadow-lg border border-warm-gray/20"
-              >
-                <stat.icon className="text-4xl text-imperial-gold mb-4" />
-                <h3 className="text-xl font-playfair text-prussian-blue mb-2">{stat.title}</h3>
-                <p className="text-3xl font-bold text-warm-gray mb-2">{stat.value}</p>
-                <p className="text-warm-gray/80">{stat.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </motion.section>
-
+      <div className="container mx-auto px-4 py-24">
         {/* Introduction */}
         <motion.section 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-16"
+          className="mb-24"
         >
-          <h2 className="section-title text-warm-gray">La Visione Diplomatica</h2>
-          <div className="grid md:grid-cols-2 gap-8 items-center">
-            <div className="prose prose-lg">
+          <motion.h2 
+            className="text-4xl font-playfair mb-12 text-prussian-blue bg-clip-text text-transparent bg-gradient-to-r from-prussian-blue via-prussian-blue/80 to-prussian-blue"
+            animate={{
+              backgroundPosition: ["0%", "100%"],
+            }}
+            transition={{
+              duration: 5,
+              repeat: Infinity,
+              repeatType: "reverse",
+            }}
+          >
+            La Visione Diplomatica
+          </motion.h2>
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <motion.div 
+              className="prose prose-lg backdrop-blur-md bg-white/10 p-8 rounded-[2rem] border border-white/20 shadow-2xl"
+              whileHover={{ scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
               <p className="text-warm-gray">
-                La politica estera di Bismarck fu caratterizzata da un approccio pragmatico e realista, 
-                mirato a mantenere la pace in Europa e a proteggere gli interessi della Germania. Dopo 
-                l'unificazione, il suo obiettivo principale era consolidare la posizione della Germania 
-                come potenza continentale senza provocare una grande guerra.
+                La politica estera di Bismarck fu caratterizzata da un genio diplomatico senza precedenti. 
+                Attraverso un complesso sistema di alleanze e accordi, mantenne la pace in Europa per 
+                quasi due decenni, consolidando la posizione della Germania come potenza continentale.
               </p>
               <p className="text-warm-gray">
-                Attraverso un complesso sistema di alleanze e una diplomazia abile, Bismarck riuscì a 
-                mantenere l'equilibrio di potere in Europa per quasi due decenni. La sua strategia di 
-                'saturazione' e 'equilibrio' prevenne la formazione di coalizioni anti-tedesche e mantenne 
-                la Germania al centro del sistema internazionale.
+                Il suo approccio, basato sulla Realpolitik, combinava pragmatismo e visione strategica, 
+                creando un equilibrio di potere che favoriva gli interessi tedeschi.
               </p>
-              <p className="text-warm-gray">
-                La sua Realpolitik combinava interessi nazionali con considerazioni strategiche, 
-                dimostrando una straordinaria capacità di navigare tra le complesse relazioni tra le 
-                potenze europee. Questo approccio, sebbene talvolta cinico, garantì un periodo di 
-                relativa stabilità in Europa dopo i tumultuosi anni dell'unificazione tedesca.
-              </p>
-            </div>
-            <div className="relative">
-              <div className="absolute inset-0 bg-imperial-gold/10 transform -rotate-3" />
+            </motion.div>
+            <motion.div 
+              className="relative transform-gpu"
+              whileHover={{ scale: 1.05, rotateY: 5 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <div className="absolute inset-0 bg-imperial-gold/10 transform rotate-3 rounded-[2rem]" />
               <img 
-                src="/images/bismarck-diplomat.jpg" 
-                alt="Bismarck come diplomatico" 
-                className="relative rounded-lg shadow-xl"
+                src="/images/bismarck-diplomacy.jpg" 
+                alt="Bismarck al Congresso di Berlino" 
+                className="relative rounded-[2rem] shadow-2xl"
               />
-            </div>
+            </motion.div>
           </div>
         </motion.section>
 
-        {/* Key Policies */}
+        {/* Key Alliances */}
         <motion.section 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-16"
+          className="mb-24"
         >
-          <h2 className="section-title text-warm-gray">Le Strategie Diplomatiche</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {policies.map((policy, index) => (
+          <motion.h2 
+            className="text-4xl font-playfair mb-12 text-prussian-blue bg-clip-text text-transparent bg-gradient-to-r from-prussian-blue via-prussian-blue/80 to-prussian-blue"
+            animate={{
+              backgroundPosition: ["0%", "100%"],
+            }}
+            transition={{
+              duration: 5,
+              repeat: Infinity,
+              repeatType: "reverse",
+            }}
+          >
+            Le Alleanze Chiave
+          </motion.h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              { icon: FaHandshake, title: "Duplice Alleanza", text: "Alleanza con l'Austria-Ungheria (1879)" },
+              { icon: FaChessKnight, title: "Triplice Alleanza", text: "Accordo con Austria-Ungheria e Italia (1882)" },
+              { icon: FaShieldAlt, title: "Trattato di Riassicurazione", text: "Accordo segreto con la Russia (1887)" },
+              { icon: FaCrown, title: "Alleanza dei Tre Imperatori", text: "Accordo con Austria e Russia (1873)" }
+            ].map((item, index) => (
               <motion.div
-                key={policy.title}
+                key={item.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="card group hover:bg-parchment/50 cursor-pointer"
-                onClick={() => setSelectedPolicy(selectedPolicy === policy.title ? null : policy.title)}
+                whileHover={{ y: -8, scale: 1.02 }}
+                className="backdrop-blur-md bg-white/10 p-8 rounded-[2rem] border border-white/20 shadow-2xl transform-gpu"
               >
-                <policy.icon className="text-4xl text-imperial-gold mb-4" />
-                <h3 className="text-xl font-playfair mb-2">{policy.title}</h3>
-                <p className="text-warm-gray mb-4">{policy.description}</p>
-                <AnimatePresence>
-                  {selectedPolicy === policy.title && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: "auto" }}
-                      exit={{ opacity: 0, height: 0 }}
-                      className="overflow-hidden"
-                    >
-                      <p className="text-warm-gray/80 text-sm mb-4">{policy.details}</p>
-                      <div className="border-t border-warm-gray/20 pt-4">
-                        <h4 className="text-sm font-semibold text-prussian-blue mb-2">Timeline</h4>
-                        <ul className="space-y-2">
-                          {policy.timeline.map((item) => (
-                            <li key={item.year} className="text-sm text-warm-gray/80">
-                              <span className="font-semibold">{item.year}:</span> {item.event}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                <motion.div
+                  whileHover={{ scale: 1.2, rotate: 10 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                  className="mb-6"
+                >
+                  <item.icon className="text-5xl text-imperial-gold" />
+                </motion.div>
+                <h3 className="text-2xl font-playfair mb-4 text-prussian-blue">{item.title}</h3>
+                <p className="text-warm-gray text-lg">{item.text}</p>
               </motion.div>
             ))}
           </div>
         </motion.section>
 
-        {/* Impact Section */}
+        {/* Diplomatic Achievements */}
         <motion.section 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-16"
+          className="mb-24"
         >
-          <h2 className="section-title text-warm-gray">L'Impatto Internazionale</h2>
-          <div className="bg-parchment p-8 rounded-lg border border-warm-gray/20">
-            <div className="grid md:grid-cols-2 gap-8">
-              <div>
-                <h3 className="text-xl font-playfair text-prussian-blue mb-4">Successi</h3>
-                <ul className="space-y-2 text-warm-gray">
-                  <li>• Mantenimento della pace in Europa per quasi due decenni</li>
-                  <li>• Isolamento diplomatico della Francia</li>
-                  <li>• Creazione di un sistema di alleanze stabile</li>
-                  <li>• Prevenzione di una guerra su due fronti</li>
-                  <li>• Consolidamento della posizione della Germania come potenza continentale</li>
-                  <li>• Mediazione efficace nelle crisi internazionali</li>
-                </ul>
-              </div>
-              <div>
-                <h3 className="text-xl font-playfair text-prussian-blue mb-4">Sfide</h3>
-                <ul className="space-y-2 text-warm-gray">
-                  <li>• Tensioni crescenti con la Russia</li>
-                  <li>• Complessità del sistema di alleanze</li>
-                  <li>• Pressioni per l'espansione coloniale</li>
-                  <li>• Rivalità con la Gran Bretagna</li>
-                  <li>• Instabilità nei Balcani</li>
-                  <li>• Difficoltà nel mantenere l'equilibrio di potere</li>
-                </ul>
-              </div>
-            </div>
+          <motion.h2 
+            className="text-4xl font-playfair mb-12 text-prussian-blue bg-clip-text text-transparent bg-gradient-to-r from-prussian-blue via-prussian-blue/80 to-prussian-blue"
+            animate={{
+              backgroundPosition: ["0%", "100%"],
+            }}
+            transition={{
+              duration: 5,
+              repeat: Infinity,
+              repeatType: "reverse",
+            }}
+          >
+            I Successi Diplomatici
+          </motion.h2>
+          <div className="grid md:grid-cols-2 gap-12">
+            <motion.div 
+              className="prose prose-lg backdrop-blur-md bg-white/10 p-8 rounded-[2rem] border border-white/20 shadow-2xl"
+              whileHover={{ scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <p className="text-warm-gray">
+                I principali successi diplomatici di Bismarck includono:
+              </p>
+              <ul className="list-disc pl-6 text-warm-gray">
+                <li>Il Congresso di Berlino (1878) che ristabilì l'equilibrio nei Balcani</li>
+                <li>L'isolamento diplomatico della Francia</li>
+                <li>La creazione di un sistema di alleanze che garantì la pace</li>
+                <li>La gestione della crisi bulgara (1885-1888)</li>
+              </ul>
+            </motion.div>
+            <motion.div 
+              className="relative transform-gpu"
+              whileHover={{ scale: 1.05, rotateY: 5 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <div className="absolute inset-0 bg-imperial-gold/10 transform -rotate-3 rounded-[2rem]" />
+              <img 
+                src="/images/congress-berlin-map.jpg" 
+                alt="Mappa del Congresso di Berlino" 
+                className="relative rounded-[2rem] shadow-2xl"
+              />
+            </motion.div>
           </div>
+        </motion.section>
+
+        {/* Strategic Vision */}
+        <motion.section 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-24"
+        >
+          <motion.h2 
+            className="text-4xl font-playfair mb-12 text-prussian-blue bg-clip-text text-transparent bg-gradient-to-r from-prussian-blue via-prussian-blue/80 to-prussian-blue"
+            animate={{
+              backgroundPosition: ["0%", "100%"],
+            }}
+            transition={{
+              duration: 5,
+              repeat: Infinity,
+              repeatType: "reverse",
+            }}
+          >
+            La Visione Strategica
+          </motion.h2>
+          <motion.div 
+            className="backdrop-blur-md bg-white/10 p-12 rounded-[2rem] border border-white/20 shadow-2xl"
+            whileHover={{ scale: 1.02 }}
+            transition={{ type: "spring", stiffness: 300 }}
+          >
+            <blockquote className="text-3xl font-crimson italic text-warm-gray mb-8">
+              "La politica è l'arte del possibile."
+            </blockquote>
+            <p className="text-warm-gray text-lg">
+              La visione strategica di Bismarck si basava sulla comprensione profonda delle dinamiche 
+              di potere europee. La sua capacità di anticipare le mosse degli avversari e di mantenere 
+              un equilibrio precario tra le potenze continentali fu fondamentale per la stabilità 
+              dell'Europa del XIX secolo.
+            </p>
+          </motion.div>
         </motion.section>
 
         {/* Legacy */}
@@ -288,30 +319,47 @@ const ForeignPolicy: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-16"
+          className="mb-24"
         >
-          <h2 className="section-title text-warm-gray">L'Eredità Diplomatica</h2>
-          <div className="prose prose-lg max-w-none">
-            <p className="text-warm-gray">
-              La politica estera di Bismarck ha lasciato un'impronta duratura sulla diplomazia europea. 
-              Il suo sistema di alleanze e la sua Realpolitik influenzarono profondamente le relazioni 
-              internazionali del XX secolo. La sua capacità di mantenere l'equilibrio di potere attraverso 
-              una complessa rete di alleanze e trattati divenne un modello per la diplomazia moderna.
-            </p>
-            <p className="text-warm-gray">
-              Tuttavia, la complessità del suo sistema di alleanze e la sua dipendenza dalla sua 
-              straordinaria abilità diplomatica resero il sistema fragile dopo la sua partenza. 
-              La sua eredità dimostra sia i vantaggi di una diplomazia pragmatica e realista, sia 
-              i rischi di un sistema internazionale troppo dipendente dalla personalità di un singolo 
-              statista.
-            </p>
-            <p className="text-warm-gray">
-              La sua visione di un'Europa stabile basata sull'equilibrio di potere e sulla diplomazia 
-              multilaterale continua a influenzare il pensiero strategico contemporaneo. Tuttavia, 
-              il suo approccio autoritario e la sua diffidenza verso le istituzioni internazionali 
-              rappresentano anche un monito sulla necessità di bilanciare interessi nazionali e 
-              cooperazione internazionale.
-            </p>
+          <motion.h2 
+            className="text-4xl font-playfair mb-12 text-prussian-blue bg-clip-text text-transparent bg-gradient-to-r from-prussian-blue via-prussian-blue/80 to-prussian-blue"
+            animate={{
+              backgroundPosition: ["0%", "100%"],
+            }}
+            transition={{
+              duration: 5,
+              repeat: Infinity,
+              repeatType: "reverse",
+            }}
+          >
+            L'Eredità
+          </motion.h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              { icon: FaGlobeEurope, title: "Equilibrio Europeo", text: "Sistema di alleanze che influenzò la diplomazia europea" },
+              { icon: FaBalanceScale, title: "Realpolitik", text: "Approccio pragmatico alla politica internazionale" },
+              { icon: FaMapMarkedAlt, title: "Geopolitica", text: "Visione strategica che plasmò l'Europa moderna" }
+            ].map((item, index) => (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                whileHover={{ y: -8, scale: 1.02 }}
+                className="backdrop-blur-md bg-white/10 p-8 rounded-[2rem] border border-white/20 shadow-2xl transform-gpu"
+              >
+                <motion.div
+                  whileHover={{ scale: 1.2, rotate: 10 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                  className="mb-6"
+                >
+                  <item.icon className="text-5xl text-imperial-gold" />
+                </motion.div>
+                <h3 className="text-2xl font-playfair mb-4 text-prussian-blue">{item.title}</h3>
+                <p className="text-warm-gray text-lg">{item.text}</p>
+              </motion.div>
+            ))}
           </div>
         </motion.section>
       </div>

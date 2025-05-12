@@ -29,69 +29,135 @@
 
 ### Font Sizes
 - Base: 16px
-- Headings: 24px - 48px
+- Headings: 24px - 96px (responsive scaling)
 - Small text: 14px
-- Large text: 18px
+- Large text: 18px - 24px
+
+## Modern Design Elements
+
+### Glassmorphism
+- Backdrop blur: `backdrop-blur-md`
+- Background opacity: `bg-white/10`
+- Border: `border border-white/20`
+- Shadow: `shadow-2xl`
+- Border radius: `rounded-[2rem]`
+
+### 3D Effects
+- Perspective: `perspective-1000`
+- Transform GPU: `transform-gpu`
+- Rotation on hover: `rotateX(5deg) rotateY(5deg)`
+- Depth: `translateZ(20px)`
+
+### Dynamic Gradients
+- Text gradients: `bg-gradient-to-r from-ivory via-imperial-gold to-ivory`
+- Button gradients: `bg-gradient-to-r from-prussian-blue via-prussian-blue/90 to-prussian-blue`
+- Background gradients: `bg-gradient-to-br from-ivory via-ivory/95 to-ivory/90`
 
 ## Components
 
 ### Buttons
-- **Primary Button**: Prussian Blue background with Ivory text
-- **Secondary Button**: Ivory background with Prussian Blue border and text
-- **Accent Button**: Imperial Gold background with Dark Gray text
+- **Primary Button**: 
+  - Gradient background with shine effect
+  - Rounded-full design
+  - Hover animation with scale and lift
+  - Shine effect on hover
+  - Shadow with color-specific glow
 
 ### Cards
-- Background: Ivory
-- Border: Subtle shadow
-- Hover effect: Enhanced shadow and slight scale
+- Glassmorphism effect
+- 3D rotation on hover
+- Dynamic gradient backgrounds
+- Enhanced shadow effects
+- Smooth spring animations
 
 ### Navigation
-- Background: Prussian Blue
-- Text: Ivory
-- Hover: Imperial Gold
-
-## Spacing
-- Base unit: 4px
-- Common spacing: 8px, 16px, 24px, 32px, 48px
-- Large spacing: 64px, 96px
+- Background: Prussian Blue with glassmorphism
+- Text: Ivory with gradient effects
+- Hover: Imperial Gold with shine effect
 
 ## Animations
-- **Fade In**: Subtle fade for content appearance
-- **Slide Up**: Smooth upward motion for content reveals
+
+### Motion Effects
+- **Spring Physics**:
+  - Damping: 20
+  - Stiffness: 300
+  - Mass: 1
+
+### Interactive Elements
+- Mouse-tracking 3D perspective
+- Particle system with 20 elements
+- Smooth parallax scrolling
+- Gradient text animations
+- Shine effects on hover
+
+### Transitions
 - Duration: 300ms - 500ms
-- Easing: ease-in-out
-
-## Design Principles
-1. **Historical Authenticity**: Design elements should reflect the Bismarck era while maintaining modern usability
-2. **Elegant Simplicity**: Clean layouts with sophisticated details
-3. **Hierarchical Clarity**: Clear visual hierarchy through typography and spacing
-4. **Responsive Design**: Fluid layouts that work across all device sizes
-5. **Accessible Contrast**: Ensuring all text meets WCAG 2.1 contrast requirements
-
-## Usage Guidelines
-- Use primary colors for main UI elements and actions
-- Apply secondary colors for supporting elements
-- Use accent colors sparingly for emphasis
-- Maintain consistent spacing throughout the interface
-- Ensure all interactive elements have clear hover and active states
-- Use animations purposefully to enhance user experience
+- Easing: spring physics
+- GPU acceleration
+- Smooth state changes
 
 ## Layout
 
-### Griglia
-- Sistema a 12 colonne
-- Margini: 24px
-- Gutter: 32px
-- Breakpoints:
-  - Mobile: < 768px
-  - Tablet: 768px - 1024px
-  - Desktop: > 1024px
+### Grid System
+- 12-column responsive grid
+- Gaps: 32px - 48px
+- Container padding: 24px - 48px
+- Section spacing: 64px - 96px
 
-### Spaziature
-- Base unit: 8px
-- Margini sezione: 64px
-- Padding contenuto: 32px
-- Spaziatura elementi: 16px
+### Responsive Breakpoints
+- Mobile: < 768px
+- Tablet: 768px - 1024px
+- Desktop: > 1024px
+
+## Performance Optimizations
+
+### Animation Performance
+- Hardware acceleration with `transform-gpu`
+- Optimized particle system
+- Efficient spring animations
+- Reduced repaints
+
+### Loading States
+- Skeleton screens with glassmorphism
+- Progressive loading
+- Smooth transitions
+- Optimized asset loading
+
+## Accessibility
+
+### Visual Hierarchy
+- Clear contrast ratios
+- Readable font sizes
+- Proper spacing
+- Focus states
+
+### Interactive Elements
+- Clear hover states
+- Visible focus rings
+- Adequate touch targets
+- Screen reader support
+
+## Design Principles
+1. **Modern Innovation**: Cutting-edge design while maintaining historical context
+2. **Interactive Experience**: Engaging animations and 3D effects
+3. **Visual Depth**: Layered design with glassmorphism and shadows
+4. **Smooth Transitions**: Natural-feeling animations with spring physics
+5. **Responsive Design**: Fluid layouts that work across all devices
+
+## Usage Guidelines
+- Use glassmorphism for main containers
+- Apply 3D effects for interactive elements
+- Implement spring animations for natural movement
+- Maintain consistent spacing and typography
+- Ensure all interactive elements have clear feedback
+- Use particle effects sparingly for emphasis
+
+## Implementation Notes
+- Use Framer Motion for animations
+- Implement CSS transforms for performance
+- Apply backdrop-filter for glassmorphism
+- Use CSS variables for consistent theming
+- Optimize for mobile performance
 
 ## Componenti UI
 
@@ -211,10 +277,4 @@
 - Lazy loading per immagini
 - Code splitting
 - Minificazione assets
-- Caching strategico
-
-### Loading States
-- Skeleton screens
-- Progress indicators
-- Placeholder content
-- Loading animations 
+- Caching strategico 

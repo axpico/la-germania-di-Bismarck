@@ -1,9 +1,45 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useRef } from 'react';
+import { motion, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion';
 import { Chrono } from 'react-chrono';
 import { FaCrown, FaScroll, FaBalanceScale, FaMapMarkedAlt, FaShieldAlt, FaHandshake, FaBook } from 'react-icons/fa';
 
 const Bismarck: React.FC = () => {
+  const { scrollY } = useScroll();
+  const y = useTransform(scrollY, [0, 500], [0, 150]);
+  const opacity = useTransform(scrollY, [0, 300], [1, 0]);
+  const scale = useTransform(scrollY, [0, 300], [1, 0.95]);
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // Smooth spring animation for mouse movement
+  const springConfig = { damping: 20, stiffness: 300 };
+  const springX = useSpring(mouseX, springConfig);
+  const springY = useSpring(mouseY, springConfig);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (containerRef.current) {
+        const rect = containerRef.current.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        mouseX.set(x);
+        mouseY.set(y);
+      }
+    };
+
+    const container = containerRef.current;
+    if (container) {
+      container.addEventListener('mousemove', handleMouseMove);
+    }
+
+    return () => {
+      if (container) {
+        container.removeEventListener('mousemove', handleMouseMove);
+      }
+    };
+  }, [mouseX, mouseY]);
+
   const timelineItems = [
     {
       title: "1815",
@@ -62,40 +98,117 @@ const Bismarck: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-ivory">
+    <div className="min-h-screen bg-gradient-to-br from-ivory via-ivory/95 to-ivory/90">
       {/* Hero Section */}
       <motion.div 
+        ref={containerRef}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className="relative h-[60vh] bg-prussian-blue overflow-hidden"
+        className="relative h-[80vh] overflow-hidden perspective-1000"
       >
-        <div className="absolute inset-0 bg-[url('/images/bismarck-portrait.jpg')] bg-cover bg-center opacity-20" />
-        <div className="absolute inset-0 bg-gradient-to-b from-prussian-blue/80 to-prussian-blue" />
+        <motion.div 
+          style={{ y, opacity, scale }}
+          className="absolute inset-0 bg-[url('/images/bismarck-portrait.jpg')] bg-cover bg-center"
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-prussian-blue/95 via-prussian-blue/85 to-prussian-blue/75" />
+        
+        {/* Interactive 3D background elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          {[...Array(15)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-24 h-24 rounded-full bg-imperial-gold/10"
+              style={{
+                x: springX,
+                y: springY,
+                rotateX: useTransform(springX, [0, 1000], [0, 45]),
+                rotateY: useTransform(springY, [0, 1000], [0, 45]),
+              }}
+              initial={{ 
+                x: Math.random() * window.innerWidth,
+                y: Math.random() * window.innerHeight,
+                scale: 0,
+                rotate: Math.random() * 360
+              }}
+              animate={{ 
+                x: Math.random() * window.innerWidth,
+                y: Math.random() * window.innerHeight,
+                scale: [0, 1, 0],
+                rotate: [0, 360]
+              }}
+              transition={{
+                duration: 15 + i * 2,
+                repeat: Infinity,
+                ease: "linear"
+              }}
+            />
+          ))}
+        </div>
+
         <div className="relative container mx-auto px-4 h-full flex items-center">
           <motion.div 
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="text-ivory"
+            className="backdrop-blur-md bg-white/10 p-12 rounded-[2rem] border border-white/20 shadow-2xl transform-gpu"
+            style={{
+              rotateX: useTransform(springY, [0, 1000], [-5, 5]),
+              rotateY: useTransform(springX, [0, 1000], [-5, 5]),
+            }}
           >
-            <h1 className="text-4xl md:text-6xl font-playfair mb-4 text-ivory">Bismarck</h1>
-            <p className="text-xl md:text-2xl font-crimson italic text-ivory">L'architetto dell'unità tedesca</p>
+            <motion.h1 
+              className="text-6xl md:text-8xl font-playfair mb-6 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-ivory via-imperial-gold to-ivory"
+              animate={{
+                backgroundPosition: ["0%", "100%"],
+              }}
+              transition={{
+                duration: 5,
+                repeat: Infinity,
+                repeatType: "reverse",
+              }}
+            >
+              Bismarck
+            </motion.h1>
+            <motion.p 
+              className="text-2xl md:text-3xl font-crimson italic text-ivory/90"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.6 }}
+            >
+              L'architetto dell'unità tedesca
+            </motion.p>
           </motion.div>
         </div>
       </motion.div>
 
       {/* Main Content */}
-      <div className="container mx-auto px-4 py-16">
+      <div className="container mx-auto px-4 py-24">
         {/* Introduction */}
         <motion.section 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-16"
+          className="mb-24"
         >
-          <h2 className="section-title text-warm-gray">La Visione</h2>
-          <div className="grid md:grid-cols-2 gap-8 items-center">
-            <div className="prose prose-lg">
+          <motion.h2 
+            className="text-4xl font-playfair mb-12 text-prussian-blue bg-clip-text text-transparent bg-gradient-to-r from-prussian-blue via-prussian-blue/80 to-prussian-blue"
+            animate={{
+              backgroundPosition: ["0%", "100%"],
+            }}
+            transition={{
+              duration: 5,
+              repeat: Infinity,
+              repeatType: "reverse",
+            }}
+          >
+            La Visione
+          </motion.h2>
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <motion.div 
+              className="prose prose-lg backdrop-blur-md bg-white/10 p-8 rounded-[2rem] border border-white/20 shadow-2xl"
+              whileHover={{ scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
               <p className="text-warm-gray">
                 Otto von Bismarck (1815-1898) fu una delle figure più influenti della storia europea del XIX secolo. 
                 Conosciuto come il "Cancelliere di Ferro", fu l'artefice principale dell'unificazione tedesca e il 
@@ -105,15 +218,19 @@ const Bismarck: React.FC = () => {
                 La sua politica realista e il suo genio diplomatico trasformarono la Prussia in una potenza 
                 continentale, gettando le basi per la Germania moderna.
               </p>
-            </div>
-            <div className="relative">
-              <div className="absolute inset-0 bg-imperial-gold/10 transform rotate-3" />
+            </motion.div>
+            <motion.div 
+              className="relative transform-gpu"
+              whileHover={{ scale: 1.05, rotateY: 5 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <div className="absolute inset-0 bg-imperial-gold/10 transform rotate-3 rounded-[2rem]" />
               <img 
                 src="/images/bismarck-statue.jpg" 
                 alt="Statua di Bismarck" 
-                className="relative rounded-lg shadow-xl"
+                className="relative rounded-[2rem] shadow-2xl"
               />
-            </div>
+            </motion.div>
           </div>
         </motion.section>
 
@@ -122,30 +239,48 @@ const Bismarck: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-16"
+          className="mb-24"
         >
-          <h2 className="section-title text-warm-gray">Le Conquiste</h2>
+          <motion.h2 
+            className="text-4xl font-playfair mb-12 text-prussian-blue bg-clip-text text-transparent bg-gradient-to-r from-prussian-blue via-prussian-blue/80 to-prussian-blue"
+            animate={{
+              backgroundPosition: ["0%", "100%"],
+            }}
+            transition={{
+              duration: 5,
+              repeat: Infinity,
+              repeatType: "reverse",
+            }}
+          >
+            Le Conquiste
+          </motion.h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="card group">
-              <FaCrown className="text-4xl text-imperial-gold mb-4" />
-              <h3 className="text-xl font-playfair mb-2">Unificazione</h3>
-              <p className="text-warm-gray">Unificazione degli stati tedeschi sotto la guida prussiana</p>
-            </div>
-            <div className="card group">
-              <FaBalanceScale className="text-4xl text-imperial-gold mb-4" />
-              <h3 className="text-xl font-playfair mb-2">Diplomazia</h3>
-              <p className="text-warm-gray">Sistema di alleanze che mantenne la pace in Europa</p>
-            </div>
-            <div className="card group">
-              <FaScroll className="text-4xl text-imperial-gold mb-4" />
-              <h3 className="text-xl font-playfair mb-2">Riforme</h3>
-              <p className="text-warm-gray">Modernizzazione dello stato e welfare sociale</p>
-            </div>
-            <div className="card group">
-              <FaMapMarkedAlt className="text-4xl text-imperial-gold mb-4" />
-              <h3 className="text-xl font-playfair mb-2">Espansione</h3>
-              <p className="text-warm-gray">Acquisizione di colonie e potenza navale</p>
-            </div>
+            {[
+              { icon: FaCrown, title: "Unificazione", text: "Unificazione degli stati tedeschi sotto la guida prussiana" },
+              { icon: FaBalanceScale, title: "Diplomazia", text: "Sistema di alleanze che mantenne la pace in Europa" },
+              { icon: FaScroll, title: "Riforme", text: "Modernizzazione dello stato e welfare sociale" },
+              { icon: FaMapMarkedAlt, title: "Espansione", text: "Acquisizione di colonie e potenza navale" }
+            ].map((item, index) => (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                whileHover={{ y: -8, scale: 1.02 }}
+                className="backdrop-blur-md bg-white/10 p-8 rounded-[2rem] border border-white/20 shadow-2xl transform-gpu"
+              >
+                <motion.div
+                  whileHover={{ scale: 1.2, rotate: 10 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                  className="mb-6"
+                >
+                  <item.icon className="text-5xl text-imperial-gold" />
+                </motion.div>
+                <h3 className="text-2xl font-playfair mb-4 text-prussian-blue">{item.title}</h3>
+                <p className="text-warm-gray text-lg">{item.text}</p>
+              </motion.div>
+            ))}
           </div>
         </motion.section>
 
@@ -154,23 +289,41 @@ const Bismarck: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-16"
+          className="mb-24"
         >
-          <h2 className="section-title text-warm-gray">La Timeline Storica</h2>
-          <div className="h-[600px]">
-            <Chrono
-              items={timelineItems}
-              mode="VERTICAL"
-              theme={{
-                primary: '#1B365D',
-                secondary: '#C5A572',
-                cardBgColor: '#F5F2E9',
-                titleColor: '#1B365D',
-                cardTitleColor: '#1B365D',
-                cardSubtitleColor: '#6B5B4D',
-              }}
-            />
-          </div>
+          <motion.h2 
+            className="text-4xl font-playfair mb-12 text-prussian-blue bg-clip-text text-transparent bg-gradient-to-r from-prussian-blue via-prussian-blue/80 to-prussian-blue"
+            animate={{
+              backgroundPosition: ["0%", "100%"],
+            }}
+            transition={{
+              duration: 5,
+              repeat: Infinity,
+              repeatType: "reverse",
+            }}
+          >
+            La Timeline Storica
+          </motion.h2>
+          <motion.div 
+            className="backdrop-blur-md bg-white/10 p-8 rounded-[2rem] border border-white/20 shadow-2xl"
+            whileHover={{ scale: 1.02 }}
+            transition={{ type: "spring", stiffness: 300 }}
+          >
+            <div className="h-[600px]">
+              <Chrono
+                items={timelineItems}
+                mode="VERTICAL"
+                theme={{
+                  primary: '#1B365D',
+                  secondary: '#C5A572',
+                  cardBgColor: 'rgba(245, 242, 233, 0.9)',
+                  titleColor: '#1B365D',
+                  cardTitleColor: '#1B365D',
+                  cardSubtitleColor: '#6B5B4D',
+                }}
+              />
+            </div>
+          </motion.div>
         </motion.section>
 
         {/* Legacy */}
@@ -178,19 +331,35 @@ const Bismarck: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-16"
+          className="mb-24"
         >
-          <h2 className="section-title text-warm-gray">L'Eredità</h2>
-          <div className="bg-parchment p-8 rounded-lg border border-warm-gray/20">
-            <blockquote className="text-2xl font-crimson italic text-warm-gray mb-6">
+          <motion.h2 
+            className="text-4xl font-playfair mb-12 text-prussian-blue bg-clip-text text-transparent bg-gradient-to-r from-prussian-blue via-prussian-blue/80 to-prussian-blue"
+            animate={{
+              backgroundPosition: ["0%", "100%"],
+            }}
+            transition={{
+              duration: 5,
+              repeat: Infinity,
+              repeatType: "reverse",
+            }}
+          >
+            L'Eredità
+          </motion.h2>
+          <motion.div 
+            className="backdrop-blur-md bg-white/10 p-12 rounded-[2rem] border border-white/20 shadow-2xl"
+            whileHover={{ scale: 1.02 }}
+            transition={{ type: "spring", stiffness: 300 }}
+          >
+            <blockquote className="text-3xl font-crimson italic text-warm-gray mb-8">
               "La politica non è una scienza esatta, ma un'arte."
             </blockquote>
-            <p className="text-warm-gray">
+            <p className="text-warm-gray text-lg">
               L'eredità di Bismarck continua a influenzare la politica e la diplomazia moderna. 
               Il suo approccio pragmatico alla politica estera e le sue riforme sociali hanno 
               lasciato un'impronta indelebile sulla storia europea.
             </p>
-          </div>
+          </motion.div>
         </motion.section>
 
         {/* Diplomatic Achievements */}
@@ -198,11 +367,27 @@ const Bismarck: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-16"
+          className="mb-24"
         >
-          <h2 className="section-title text-warm-gray">Le Alleanze Diplomatiche</h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="prose prose-lg">
+          <motion.h2 
+            className="text-4xl font-playfair mb-12 text-prussian-blue bg-clip-text text-transparent bg-gradient-to-r from-prussian-blue via-prussian-blue/80 to-prussian-blue"
+            animate={{
+              backgroundPosition: ["0%", "100%"],
+            }}
+            transition={{
+              duration: 5,
+              repeat: Infinity,
+              repeatType: "reverse",
+            }}
+          >
+            Le Alleanze Diplomatiche
+          </motion.h2>
+          <div className="grid md:grid-cols-2 gap-12">
+            <motion.div 
+              className="prose prose-lg backdrop-blur-md bg-white/10 p-8 rounded-[2rem] border border-white/20 shadow-2xl"
+              whileHover={{ scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
               <p className="text-warm-gray">
                 Bismarck creò un complesso sistema di alleanze per mantenere l'equilibrio di potere in Europa:
               </p>
@@ -212,15 +397,19 @@ const Bismarck: React.FC = () => {
                 <li>La Triplice Alleanza con Austria-Ungheria e Italia (1882)</li>
                 <li>Il Trattato di Riassicurazione con la Russia (1887)</li>
               </ul>
-            </div>
-            <div className="relative">
-              <div className="absolute inset-0 bg-imperial-gold/10 transform -rotate-3" />
+            </motion.div>
+            <motion.div 
+              className="relative transform-gpu"
+              whileHover={{ scale: 1.05, rotateY: 5 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <div className="absolute inset-0 bg-imperial-gold/10 transform -rotate-3 rounded-[2rem]" />
               <img 
                 src="/images/bismarck-diplomacy.jpg" 
                 alt="Bismarck al Congresso di Berlino" 
-                className="relative rounded-lg shadow-xl"
+                className="relative rounded-[2rem] shadow-2xl"
               />
-            </div>
+            </motion.div>
           </div>
         </motion.section>
 
@@ -229,46 +418,47 @@ const Bismarck: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-16"
+          className="mb-24"
         >
-          <h2 className="section-title text-warm-gray">Le Riforme Sociali</h2>
+          <motion.h2 
+            className="text-4xl font-playfair mb-12 text-prussian-blue bg-clip-text text-transparent bg-gradient-to-r from-prussian-blue via-prussian-blue/80 to-prussian-blue"
+            animate={{
+              backgroundPosition: ["0%", "100%"],
+            }}
+            transition={{
+              duration: 5,
+              repeat: Infinity,
+              repeatType: "reverse",
+            }}
+          >
+            Le Riforme Sociali
+          </motion.h2>
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="card group">
-              <FaShieldAlt className="text-4xl text-imperial-gold mb-4" />
-              <h3 className="text-xl font-playfair mb-2">Assicurazione Malattia</h3>
-              <p className="text-warm-gray">Primo sistema di assicurazione malattia obbligatoria (1883)</p>
-            </div>
-            <div className="card group">
-              <FaHandshake className="text-4xl text-imperial-gold mb-4" />
-              <h3 className="text-xl font-playfair mb-2">Assicurazione Infortuni</h3>
-              <p className="text-warm-gray">Protezione dei lavoratori contro gli infortuni sul lavoro (1884)</p>
-            </div>
-            <div className="card group">
-              <FaBook className="text-4xl text-imperial-gold mb-4" />
-              <h3 className="text-xl font-playfair mb-2">Istruzione</h3>
-              <p className="text-warm-gray">Riforma del sistema educativo e promozione della cultura tedesca</p>
-            </div>
-          </div>
-        </motion.section>
-
-        {/* Impact on Modern Europe */}
-        <motion.section 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-16"
-        >
-          <h2 className="section-title text-warm-gray">Impatto sull'Europa Moderna</h2>
-          <div className="bg-parchment p-8 rounded-lg border border-warm-gray/20">
-            <p className="text-warm-gray mb-4">
-              L'influenza di Bismarck sulla politica europea moderna è profonda e duratura:
-            </p>
-            <ul className="list-disc pl-6 text-warm-gray">
-              <li>Creazione del primo stato sociale moderno</li>
-              <li>Stabilimento di un sistema di alleanze che influenzò la geopolitica europea per decenni</li>
-              <li>Introduzione di riforme che ispirarono altri paesi europei</li>
-              <li>Definizione del concetto di "Realpolitik" nella diplomazia internazionale</li>
-            </ul>
+            {[
+              { icon: FaShieldAlt, title: "Assicurazione Malattia", text: "Primo sistema di assicurazione malattia obbligatoria (1883)" },
+              { icon: FaHandshake, title: "Assicurazione Infortuni", text: "Protezione dei lavoratori contro gli infortuni sul lavoro (1884)" },
+              { icon: FaBook, title: "Istruzione", text: "Riforma del sistema educativo e promozione della cultura tedesca" }
+            ].map((item, index) => (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                whileHover={{ y: -8, scale: 1.02 }}
+                className="backdrop-blur-md bg-white/10 p-8 rounded-[2rem] border border-white/20 shadow-2xl transform-gpu"
+              >
+                <motion.div
+                  whileHover={{ scale: 1.2, rotate: 10 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                  className="mb-6"
+                >
+                  <item.icon className="text-5xl text-imperial-gold" />
+                </motion.div>
+                <h3 className="text-2xl font-playfair mb-4 text-prussian-blue">{item.title}</h3>
+                <p className="text-warm-gray text-lg">{item.text}</p>
+              </motion.div>
+            ))}
           </div>
         </motion.section>
       </div>

@@ -1,198 +1,179 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { FaBook, FaLandmark, FaHandshake, FaFlag, FaChartLine, FaUsers, FaNewspaper, FaGavel, FaUniversity, FaBalanceScale, FaShieldAlt } from 'react-icons/fa';
+import React, { useEffect, useRef } from 'react';
+import { motion, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion';
+import { FaFire, FaBook, FaUsers, FaBalanceScale, FaChartLine, FaHandshake, FaShieldAlt } from 'react-icons/fa';
 
 const Radicalism: React.FC = () => {
-  const [selectedMovement, setSelectedMovement] = useState<string | null>(null);
+  const { scrollY } = useScroll();
+  const y = useTransform(scrollY, [0, 500], [0, 150]);
+  const opacity = useTransform(scrollY, [0, 300], [1, 0]);
+  const scale = useTransform(scrollY, [0, 300], [1, 0.95]);
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  const movements = [
-    {
-      title: "Socialismo",
-      icon: FaUsers,
-      description: "Il movimento operaio e la nascita del socialismo tedesco.",
-      details: "Il socialismo tedesco emerse come una forza significativa durante l'era di Bismarck, guidato dalla figura di August Bebel e dal Partito Socialdemocratico Tedesco (SPD). Nonostante le leggi anti-socialiste del 1878, il movimento continuò a crescere, rappresentando gli interessi della classe operaia e promuovendo riforme sociali. La sua influenza portò Bismarck a introdurre le prime leggi sul welfare state come misura preventiva contro il radicalismo.",
-      timeline: [
-        { year: "1863", event: "Fondazione dell'Associazione Generale dei Lavoratori Tedeschi" },
-        { year: "1869", event: "Nascita del Partito Socialdemocratico dei Lavoratori" },
-        { year: "1875", event: "Unificazione dei partiti socialisti" },
-        { year: "1878", event: "Leggi Anti-Socialiste" },
-        { year: "1890", event: "Abolizione delle Leggi Anti-Socialiste" }
-      ]
-    },
-    {
-      title: "Liberalismo Radicale",
-      icon: FaFlag,
-      description: "La lotta per i diritti civili e le riforme costituzionali.",
-      details: "Il liberalismo radicale rappresentava la borghesia progressista che cercava riforme costituzionali e maggiore partecipazione politica. Guidato da figure come Eugen Richter, il movimento promuoveva la separazione tra Chiesa e Stato, l'istruzione laica e i diritti individuali. Sebbene inizialmente alleato di Bismarck contro i conservatori, divenne poi un'opposizione significativa alle sue politiche autoritarie.",
-      timeline: [
-        { year: "1861", event: "Fondazione del Partito Progressista Tedesco" },
-        { year: "1866", event: "Scissione del Partito Nazionale Liberale" },
-        { year: "1871", event: "Opposizione al Kulturkampf" },
-        { year: "1884", event: "Formazione del Partito Liberale Tedesco" }
-      ]
-    },
-    {
-      title: "Cattolicesimo Politico",
-      icon: FaLandmark,
-      description: "La resistenza al Kulturkampf e la difesa dei diritti religiosi.",
-      details: "Il cattolicesimo politico emerse come reazione al Kulturkampf di Bismarck. Il Partito di Centro (Zentrum), guidato da Ludwig Windthorst, divenne un'importante forza di opposizione, difendendo i diritti della Chiesa cattolica e promuovendo una visione federalista della Germania. La sua resistenza pacifica ma determinata portò alla fine del Kulturkampf e all'emergere di un cattolicesimo politico moderno.",
-      timeline: [
-        { year: "1870", event: "Proclamazione dell'Infallibilità Papale" },
-        { year: "1871", event: "Inizio del Kulturkampf" },
-        { year: "1872", event: "Leggi contro i Gesuiti" },
-        { year: "1878", event: "Fine del Kulturkampf" }
-      ]
-    },
-    {
-      title: "Nazionalismo",
-      icon: FaShieldAlt,
-      description: "L'emergere del nazionalismo tedesco e le sue diverse correnti.",
-      details: "Il nazionalismo tedesco si sviluppò in diverse correnti durante l'era di Bismarck. Mentre il nazionalismo ufficiale celebrava l'unificazione e la potenza tedesca, emersero anche forme più radicali che promuovevano l'espansione territoriale e la superiorità culturale tedesca. Queste correnti influenzarono profondamente la politica estera e la società tedesca, preparando il terreno per sviluppi futuri.",
-      timeline: [
-        { year: "1871", event: "Proclamazione dell'Impero Tedesco" },
-        { year: "1879", event: "Nascita della Lega Pangermanica" },
-        { year: "1884", event: "Inizio della politica coloniale" },
-        { year: "1890", event: "Crisi del sistema bismarckiano" }
-      ]
-    },
-    {
-      title: "Movimento Femminista",
-      icon: FaUsers,
-      description: "Le prime lotte per i diritti delle donne in Germania.",
-      details: "Il movimento femminista tedesco emerse durante l'era di Bismarck, guidato da figure come Louise Otto-Peters e Hedwig Dohm. Le femministe lottavano per l'accesso all'istruzione superiore, i diritti politici e l'uguaglianza sociale. Nonostante l'opposizione conservatrice, il movimento riuscì a ottenere importanti conquiste, come l'accesso delle donne all'università e la creazione di organizzazioni femminili.",
-      timeline: [
-        { year: "1865", event: "Fondazione dell'Associazione Generale delle Donne Tedesche" },
-        { year: "1870", event: "Prima petizione per il suffragio femminile" },
-        { year: "1894", event: "Fondazione della Federazione delle Associazioni Femminili Tedesche" }
-      ]
-    },
-    {
-      title: "Movimento Operaio",
-      icon: FaUsers,
-      description: "La lotta per i diritti dei lavoratori e le riforme sociali.",
-      details: "Il movimento operaio tedesco si sviluppò rapidamente durante l'industrializzazione, organizzando sindacati e promuovendo riforme sociali. Nonostante la repressione, i lavoratori riuscirono a ottenere importanti conquiste, come la riduzione dell'orario di lavoro e migliori condizioni di lavoro. Il movimento influenzò profondamente la politica sociale di Bismarck, portando all'introduzione delle prime leggi sul welfare state.",
-      timeline: [
-        { year: "1863", event: "Fondazione del primo sindacato tedesco" },
-        { year: "1878", event: "Leggi Anti-Socialiste" },
-        { year: "1883", event: "Legge sull'assicurazione contro le malattie" },
-        { year: "1884", event: "Legge sull'assicurazione contro gli infortuni" }
-      ]
-    }
-  ];
+  // Smooth spring animation for mouse movement
+  const springConfig = { damping: 20, stiffness: 300 };
+  const springX = useSpring(mouseX, springConfig);
+  const springY = useSpring(mouseY, springConfig);
 
-  const statistics = [
-    {
-      title: "Partiti",
-      icon: FaFlag,
-      value: "6",
-      description: "Principali movimenti politici radicali"
-    },
-    {
-      title: "Leggi",
-      icon: FaGavel,
-      value: "12",
-      description: "Leggi repressive approvate"
-    },
-    {
-      title: "Riforme",
-      icon: FaChartLine,
-      value: "8",
-      description: "Principali riforme sociali ottenute"
-    },
-    {
-      title: "Organizzazioni",
-      icon: FaUsers,
-      value: "15",
-      description: "Organizzazioni politiche e sociali create"
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (containerRef.current) {
+        const rect = containerRef.current.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        mouseX.set(x);
+        mouseY.set(y);
+      }
+    };
+
+    const container = containerRef.current;
+    if (container) {
+      container.addEventListener('mousemove', handleMouseMove);
     }
-  ];
+
+    return () => {
+      if (container) {
+        container.removeEventListener('mousemove', handleMouseMove);
+      }
+    };
+  }, [mouseX, mouseY]);
 
   return (
-    <div className="min-h-screen bg-ivory">
+    <div className="min-h-screen bg-gradient-to-br from-ivory via-ivory/95 to-ivory/90">
       {/* Hero Section */}
       <motion.div 
+        ref={containerRef}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className="relative h-[50vh] bg-prussian-blue overflow-hidden"
+        className="relative h-[80vh] overflow-hidden perspective-1000"
       >
-        <div className="absolute inset-0 bg-[url('/images/workers-march.jpg')] bg-cover bg-center opacity-20" />
-        <div className="absolute inset-0 bg-gradient-to-b from-prussian-blue/80 to-prussian-blue" />
+        <motion.div 
+          style={{ y, opacity, scale }}
+          className="absolute inset-0 bg-[url('/images/workers-march.jpg')] bg-cover bg-center"
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-prussian-blue/95 via-prussian-blue/85 to-prussian-blue/75" />
+        
+        {/* Interactive 3D background elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          {[...Array(15)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-24 h-24 rounded-full bg-imperial-gold/10"
+              style={{
+                x: springX,
+                y: springY,
+                rotateX: useTransform(springX, [0, 1000], [0, 45]),
+                rotateY: useTransform(springY, [0, 1000], [0, 45]),
+              }}
+              initial={{ 
+                x: Math.random() * window.innerWidth,
+                y: Math.random() * window.innerHeight,
+                scale: 0,
+                rotate: Math.random() * 360
+              }}
+              animate={{ 
+                x: Math.random() * window.innerWidth,
+                y: Math.random() * window.innerHeight,
+                scale: [0, 1, 0],
+                rotate: [0, 360]
+              }}
+              transition={{
+                duration: 15 + i * 2,
+                repeat: Infinity,
+                ease: "linear"
+              }}
+            />
+          ))}
+        </div>
+
         <div className="relative container mx-auto px-4 h-full flex items-center">
           <motion.div 
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="text-ivory"
+            className="backdrop-blur-md bg-white/10 p-12 rounded-[2rem] border border-white/20 shadow-2xl transform-gpu"
+            style={{
+              rotateX: useTransform(springY, [0, 1000], [-5, 5]),
+              rotateY: useTransform(springX, [0, 1000], [-5, 5]),
+            }}
           >
-            <h1 className="text-4xl md:text-6xl font-playfair mb-4 text-ivory">Radicalismo</h1>
-            <p className="text-xl md:text-2xl font-crimson italic text-ivory">I movimenti di opposizione nell'era di Bismarck</p>
+            <motion.h1 
+              className="text-6xl md:text-8xl font-playfair mb-6 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-ivory via-imperial-gold to-ivory"
+              animate={{
+                backgroundPosition: ["0%", "100%"],
+              }}
+              transition={{
+                duration: 5,
+                repeat: Infinity,
+                repeatType: "reverse",
+              }}
+            >
+              Radicalismo
+            </motion.h1>
+            <motion.p 
+              className="text-2xl md:text-3xl font-crimson italic text-ivory/90"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.6 }}
+            >
+              Il movimento rivoluzionario in Germania
+            </motion.p>
           </motion.div>
         </div>
       </motion.div>
 
       {/* Main Content */}
-      <div className="container mx-auto px-4 py-16">
-        {/* Statistics Section */}
-        <motion.section 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-16"
-        >
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {statistics.map((stat, index) => (
-              <motion.div
-                key={stat.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="bg-parchment p-6 rounded-lg shadow-lg border border-warm-gray/20"
-              >
-                <stat.icon className="text-4xl text-imperial-gold mb-4" />
-                <h3 className="text-xl font-playfair text-prussian-blue mb-2">{stat.title}</h3>
-                <p className="text-3xl font-bold text-warm-gray mb-2">{stat.value}</p>
-                <p className="text-warm-gray/80">{stat.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </motion.section>
-
+      <div className="container mx-auto px-4 py-24">
         {/* Introduction */}
         <motion.section 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-16"
+          className="mb-24"
         >
-          <h2 className="section-title text-warm-gray">Il Contesto Storico</h2>
-          <div className="grid md:grid-cols-2 gap-8 items-center">
-            <div className="prose prose-lg">
+          <motion.h2 
+            className="text-4xl font-playfair mb-12 text-prussian-blue bg-clip-text text-transparent bg-gradient-to-r from-prussian-blue via-prussian-blue/80 to-prussian-blue"
+            animate={{
+              backgroundPosition: ["0%", "100%"],
+            }}
+            transition={{
+              duration: 5,
+              repeat: Infinity,
+              repeatType: "reverse",
+            }}
+          >
+            Le Origini del Movimento
+          </motion.h2>
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <motion.div 
+              className="prose prose-lg backdrop-blur-md bg-white/10 p-8 rounded-[2rem] border border-white/20 shadow-2xl"
+              whileHover={{ scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
               <p className="text-warm-gray">
-                L'era di Bismarck fu caratterizzata da profondi cambiamenti sociali e politici che 
-                portarono all'emergere di vari movimenti radicali. L'industrializzazione, l'urbanizzazione 
-                e le trasformazioni sociali crearono nuove tensioni e aspirazioni nella società tedesca.
+                Il radicalismo tedesco emerse come risposta alle trasformazioni sociali e politiche 
+                dell'epoca bismarckiana. Movimenti socialisti, democratici e liberali radicali 
+                sfidarono l'ordine costituito, proponendo riforme radicali e una nuova visione 
+                della società.
               </p>
               <p className="text-warm-gray">
-                Questi movimenti rappresentavano diverse correnti di pensiero e interessi sociali, 
-                dalla classe operaia alla borghesia progressista, dai cattolici ai nazionalisti. 
-                La loro interazione con le politiche di Bismarck plasmò profondamente lo sviluppo 
-                della Germania moderna.
+                Questi movimenti, sebbene spesso repressi, contribuirono significativamente allo 
+                sviluppo del pensiero politico moderno e alla lotta per i diritti sociali.
               </p>
-              <p className="text-warm-gray">
-                La risposta di Bismarck a questi movimenti fu spesso repressiva, ma anche pragmatica. 
-                Le sue riforme sociali, sebbene motivate dalla volontà di prevenire il radicalismo, 
-                contribuirono significativamente allo sviluppo del moderno stato sociale tedesco.
-              </p>
-            </div>
-            <div className="relative">
-              <div className="absolute inset-0 bg-imperial-gold/10 transform -rotate-3" />
+            </motion.div>
+            <motion.div 
+              className="relative transform-gpu"
+              whileHover={{ scale: 1.05, rotateY: 5 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <div className="absolute inset-0 bg-imperial-gold/10 transform rotate-3 rounded-[2rem]" />
               <img 
                 src="/images/radical-meeting.jpg" 
-                alt="Riunione di radicali" 
-                className="relative rounded-lg shadow-xl"
+                alt="Riunione dei radicali" 
+                className="relative rounded-[2rem] shadow-2xl"
               />
-            </div>
+            </motion.div>
           </div>
         </motion.section>
 
@@ -201,84 +182,136 @@ const Radicalism: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-16"
+          className="mb-24"
         >
-          <h2 className="section-title text-warm-gray">I Movimenti Radicali</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {movements.map((movement, index) => (
+          <motion.h2 
+            className="text-4xl font-playfair mb-12 text-prussian-blue bg-clip-text text-transparent bg-gradient-to-r from-prussian-blue via-prussian-blue/80 to-prussian-blue"
+            animate={{
+              backgroundPosition: ["0%", "100%"],
+            }}
+            transition={{
+              duration: 5,
+              repeat: Infinity,
+              repeatType: "reverse",
+            }}
+          >
+            I Movimenti Chiave
+          </motion.h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              { icon: FaFire, title: "Socialismo", text: "Movimento per i diritti dei lavoratori e la giustizia sociale" },
+              { icon: FaBook, title: "Liberalismo", text: "Lotta per le libertà civili e la democrazia" },
+              { icon: FaUsers, title: "Democratici", text: "Movimento per il suffragio universale" },
+              { icon: FaBalanceScale, title: "Riformisti", text: "Proposte per riforme sociali e politiche" }
+            ].map((item, index) => (
               <motion.div
-                key={movement.title}
+                key={item.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="card group hover:bg-parchment/50 cursor-pointer"
-                onClick={() => setSelectedMovement(selectedMovement === movement.title ? null : movement.title)}
+                whileHover={{ y: -8, scale: 1.02 }}
+                className="backdrop-blur-md bg-white/10 p-8 rounded-[2rem] border border-white/20 shadow-2xl transform-gpu"
               >
-                <movement.icon className="text-4xl text-imperial-gold mb-4" />
-                <h3 className="text-xl font-playfair mb-2">{movement.title}</h3>
-                <p className="text-warm-gray mb-4">{movement.description}</p>
-                <AnimatePresence>
-                  {selectedMovement === movement.title && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: "auto" }}
-                      exit={{ opacity: 0, height: 0 }}
-                      className="overflow-hidden"
-                    >
-                      <p className="text-warm-gray/80 text-sm mb-4">{movement.details}</p>
-                      <div className="border-t border-warm-gray/20 pt-4">
-                        <h4 className="text-sm font-semibold text-prussian-blue mb-2">Timeline</h4>
-                        <ul className="space-y-2">
-                          {movement.timeline.map((item) => (
-                            <li key={item.year} className="text-sm text-warm-gray/80">
-                              <span className="font-semibold">{item.year}:</span> {item.event}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                <motion.div
+                  whileHover={{ scale: 1.2, rotate: 10 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                  className="mb-6"
+                >
+                  <item.icon className="text-5xl text-imperial-gold" />
+                </motion.div>
+                <h3 className="text-2xl font-playfair mb-4 text-prussian-blue">{item.title}</h3>
+                <p className="text-warm-gray text-lg">{item.text}</p>
               </motion.div>
             ))}
           </div>
         </motion.section>
 
-        {/* Impact Section */}
+        {/* Impact */}
         <motion.section 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-16"
+          className="mb-24"
         >
-          <h2 className="section-title text-warm-gray">L'Impatto Sociale</h2>
-          <div className="bg-parchment p-8 rounded-lg border border-warm-gray/20">
-            <div className="grid md:grid-cols-2 gap-8">
-              <div>
-                <h3 className="text-xl font-playfair text-prussian-blue mb-4">Conquiste</h3>
-                <ul className="space-y-2 text-warm-gray">
-                  <li>• Introduzione delle prime leggi sul welfare state</li>
-                  <li>• Maggiore partecipazione politica</li>
-                  <li>• Riforme sociali e lavorative</li>
-                  <li>• Sviluppo del movimento operaio</li>
-                  <li>• Emancipazione femminile</li>
-                  <li>• Pluralismo politico</li>
-                </ul>
-              </div>
-              <div>
-                <h3 className="text-xl font-playfair text-prussian-blue mb-4">Sfide</h3>
-                <ul className="space-y-2 text-warm-gray">
-                  <li>• Repressione governativa</li>
-                  <li>• Divisioni ideologiche</li>
-                  <li>• Conflitti sociali</li>
-                  <li>• Tensioni religiose</li>
-                  <li>• Nazionalismo estremo</li>
-                  <li>• Disuguaglianze persistenti</li>
-                </ul>
-              </div>
-            </div>
+          <motion.h2 
+            className="text-4xl font-playfair mb-12 text-prussian-blue bg-clip-text text-transparent bg-gradient-to-r from-prussian-blue via-prussian-blue/80 to-prussian-blue"
+            animate={{
+              backgroundPosition: ["0%", "100%"],
+            }}
+            transition={{
+              duration: 5,
+              repeat: Infinity,
+              repeatType: "reverse",
+            }}
+          >
+            L'Impatto Sociale
+          </motion.h2>
+          <div className="grid md:grid-cols-2 gap-12">
+            <motion.div 
+              className="prose prose-lg backdrop-blur-md bg-white/10 p-8 rounded-[2rem] border border-white/20 shadow-2xl"
+              whileHover={{ scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <p className="text-warm-gray">
+                L'impatto del radicalismo sulla società tedesca include:
+              </p>
+              <ul className="list-disc pl-6 text-warm-gray">
+                <li>Miglioramento delle condizioni dei lavoratori</li>
+                <li>Introduzione di riforme sociali</li>
+                <li>Espansione dei diritti civili</li>
+                <li>Formazione di partiti politici moderni</li>
+              </ul>
+            </motion.div>
+            <motion.div 
+              className="relative transform-gpu"
+              whileHover={{ scale: 1.05, rotateY: 5 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <div className="absolute inset-0 bg-imperial-gold/10 transform -rotate-3 rounded-[2rem]" />
+              <img 
+                src="/images/workers-march.jpg" 
+                alt="Movimento operaio" 
+                className="relative rounded-[2rem] shadow-2xl"
+              />
+            </motion.div>
           </div>
+        </motion.section>
+
+        {/* Response */}
+        <motion.section 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-24"
+        >
+          <motion.h2 
+            className="text-4xl font-playfair mb-12 text-prussian-blue bg-clip-text text-transparent bg-gradient-to-r from-prussian-blue via-prussian-blue/80 to-prussian-blue"
+            animate={{
+              backgroundPosition: ["0%", "100%"],
+            }}
+            transition={{
+              duration: 5,
+              repeat: Infinity,
+              repeatType: "reverse",
+            }}
+          >
+            La Risposta di Bismarck
+          </motion.h2>
+          <motion.div 
+            className="backdrop-blur-md bg-white/10 p-12 rounded-[2rem] border border-white/20 shadow-2xl"
+            whileHover={{ scale: 1.02 }}
+            transition={{ type: "spring", stiffness: 300 }}
+          >
+            <blockquote className="text-3xl font-crimson italic text-warm-gray mb-8">
+              "Il socialismo è come un'onda che non si può fermare, ma si può deviare."
+            </blockquote>
+            <p className="text-warm-gray text-lg">
+              Bismarck rispose al radicalismo con una combinazione di repressione e riforme sociali. 
+              Le leggi anti-socialiste furono accompagnate da misure di welfare state, in un tentativo 
+              di cooptare le richieste dei movimenti radicali e mantenere la stabilità sociale.
+            </p>
+          </motion.div>
         </motion.section>
 
         {/* Legacy */}
@@ -286,29 +319,47 @@ const Radicalism: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-16"
+          className="mb-24"
         >
-          <h2 className="section-title text-warm-gray">L'Eredità del Radicalismo</h2>
-          <div className="prose prose-lg max-w-none">
-            <p className="text-warm-gray">
-              I movimenti radicali dell'era di Bismarck hanno lasciato un'impronta duratura sulla 
-              società tedesca. Le loro lotte per i diritti sociali, politici ed economici hanno 
-              contribuito a plasmare il moderno stato sociale tedesco e la sua tradizione di 
-              partecipazione democratica.
-            </p>
-            <p className="text-warm-gray">
-              L'interazione tra questi movimenti e le politiche di Bismarck ha creato un modello 
-              unico di sviluppo sociale e politico, caratterizzato da un equilibrio tra riforme 
-              dall'alto e pressioni dal basso. Questo modello ha influenzato profondamente lo 
-              sviluppo della Germania moderna e continua a ispirare movimenti sociali e politici 
-              contemporanei.
-            </p>
-            <p className="text-warm-gray">
-              Tuttavia, alcune correnti radicali, in particolare il nazionalismo estremo, hanno 
-              anche contribuito a sviluppi problematici nella storia tedesca successiva. Questo 
-              aspetto dell'eredità del radicalismo serve come monito sulla necessità di bilanciare 
-              il cambiamento sociale con la stabilità politica e la coesione nazionale.
-            </p>
+          <motion.h2 
+            className="text-4xl font-playfair mb-12 text-prussian-blue bg-clip-text text-transparent bg-gradient-to-r from-prussian-blue via-prussian-blue/80 to-prussian-blue"
+            animate={{
+              backgroundPosition: ["0%", "100%"],
+            }}
+            transition={{
+              duration: 5,
+              repeat: Infinity,
+              repeatType: "reverse",
+            }}
+          >
+            L'Eredità
+          </motion.h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              { icon: FaChartLine, title: "Riforme Sociali", text: "Fondazione del welfare state moderno" },
+              { icon: FaHandshake, title: "Diritti Civili", text: "Espansione dei diritti democratici" },
+              { icon: FaShieldAlt, title: "Movimenti", text: "Sviluppo dei partiti politici moderni" }
+            ].map((item, index) => (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                whileHover={{ y: -8, scale: 1.02 }}
+                className="backdrop-blur-md bg-white/10 p-8 rounded-[2rem] border border-white/20 shadow-2xl transform-gpu"
+              >
+                <motion.div
+                  whileHover={{ scale: 1.2, rotate: 10 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                  className="mb-6"
+                >
+                  <item.icon className="text-5xl text-imperial-gold" />
+                </motion.div>
+                <h3 className="text-2xl font-playfair mb-4 text-prussian-blue">{item.title}</h3>
+                <p className="text-warm-gray text-lg">{item.text}</p>
+              </motion.div>
+            ))}
           </div>
         </motion.section>
       </div>

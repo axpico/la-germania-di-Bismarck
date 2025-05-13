@@ -326,7 +326,9 @@ const ForeignPolicy: React.FC = () => {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
                 whileHover={{ y: -8, scale: 1.02 }}
-                className="backdrop-blur-md bg-white/10 p-8 rounded-[2rem] border border-white/20 shadow-2xl transform-gpu cursor-pointer group"
+                className={`backdrop-blur-md bg-white/10 p-8 rounded-[2rem] border border-white/20 shadow-2xl transform-gpu cursor-pointer group relative ${
+                  expandedCard === item.id ? 'md:col-span-2 lg:col-span-3' : ''
+                }`}
                 onClick={() => setExpandedCard(expandedCard === item.id ? null : item.id)}
               >
                 <motion.div
@@ -355,7 +357,7 @@ const ForeignPolicy: React.FC = () => {
                       <h4 className="text-xl font-playfair mb-2 text-prussian-blue">Timeline:</h4>
                       <ul className="list-disc pl-6 text-warm-gray">
                         {item.timeline.map((event, i) => (
-                          <li key={i}>{event}</li>
+                          <li key={i} className="mb-2">{event}</li>
                         ))}
                       </ul>
                     </div>

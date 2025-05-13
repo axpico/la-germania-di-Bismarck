@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion';
-import { FaFlag, FaMapMarkedAlt, FaShieldAlt, FaBalanceScale, FaChartLine, FaHandshake, FaCrown } from 'react-icons/fa';
+import { FaFlag, FaMapMarkedAlt, FaShieldAlt, FaBalanceScale, FaChartLine, FaHandshake, FaCrown, FaBook, FaPalette, FaMusic } from 'react-icons/fa';
 
 const Revanchism: React.FC = () => {
   const { scrollY } = useScroll();
@@ -198,10 +198,50 @@ const Revanchism: React.FC = () => {
           </motion.h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { icon: FaFlag, title: "Guerra Franco-Prussiana", text: "Conflitto del 1870-71 che portò alla perdita dell'Alsazia-Lorena" },
-              { icon: FaMapMarkedAlt, title: "Trattato di Francoforte", text: "Accordo che sancì l'annessione tedesca" },
-              { icon: FaShieldAlt, title: "Politica di Bismarck", text: "Strategia per isolare la Francia" },
-              { icon: FaBalanceScale, title: "Tensioni Diplomatiche", text: "Crisi e confronti tra Francia e Germania" }
+              { 
+                icon: FaFlag, 
+                title: "Guerra Franco-Prussiana", 
+                text: "Conflitto del 1870-71 che portò alla perdita dell'Alsazia-Lorena",
+                details: [
+                  "Battaglia di Sedan (1870)",
+                  "Assedio di Parigi",
+                  "Proclamazione dell'Impero tedesco",
+                  "Armistizio di Versailles"
+                ]
+              },
+              { 
+                icon: FaMapMarkedAlt, 
+                title: "Trattato di Francoforte", 
+                text: "Accordo che sancì l'annessione tedesca",
+                details: [
+                  "Cessione dell'Alsazia-Lorena",
+                  "Indennità di guerra",
+                  "Occupazione militare",
+                  "Nuovi confini nazionali"
+                ]
+              },
+              { 
+                icon: FaShieldAlt, 
+                title: "Politica di Bismarck", 
+                text: "Strategia per isolare la Francia",
+                details: [
+                  "Alleanza dei Tre Imperatori",
+                  "Sistema di alleanze",
+                  "Politica di contenimento",
+                  "Diplomazia preventiva"
+                ]
+              },
+              { 
+                icon: FaBalanceScale, 
+                title: "Tensioni Diplomatiche", 
+                text: "Crisi e confronti tra Francia e Germania",
+                details: [
+                  "Crisi del 1875",
+                  "Guerra delle tariffe",
+                  "Corsa agli armamenti",
+                  "Propaganda nazionalista"
+                ]
+              }
             ].map((item, index) => (
               <motion.div
                 key={item.title}
@@ -209,8 +249,8 @@ const Revanchism: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                whileHover={{ y: -8, scale: 1.02 }}
-                className="backdrop-blur-md bg-white/10 p-8 rounded-[2rem] border border-white/20 shadow-2xl transform-gpu"
+                whileHover={{ y: -8, scale: 1.02, rotateY: 5 }}
+                className="backdrop-blur-md bg-white/10 p-8 rounded-[2rem] border border-white/20 shadow-2xl transform-gpu hover:shadow-3xl transition-all duration-300"
               >
                 <motion.div
                   whileHover={{ scale: 1.2, rotate: 10 }}
@@ -220,7 +260,22 @@ const Revanchism: React.FC = () => {
                   <item.icon className="text-5xl text-imperial-gold" />
                 </motion.div>
                 <h3 className="text-2xl font-playfair mb-4 text-prussian-blue">{item.title}</h3>
-                <p className="text-warm-gray text-lg">{item.text}</p>
+                <p className="text-warm-gray text-lg mb-4">{item.text}</p>
+                <ul className="text-warm-gray space-y-2">
+                  {item.details.map((detail, i) => (
+                    <motion.li
+                      key={i}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.1 }}
+                      whileHover={{ x: 10 }}
+                      className="text-sm"
+                    >
+                      {detail}
+                    </motion.li>
+                  ))}
+                </ul>
               </motion.div>
             ))}
           </div>
@@ -248,36 +303,75 @@ const Revanchism: React.FC = () => {
           </motion.h2>
           <div className="grid md:grid-cols-2 gap-12">
             <motion.div 
-              className="prose prose-lg backdrop-blur-md bg-white/10 p-8 rounded-[2rem] border border-white/20 shadow-2xl"
-              whileHover={{ scale: 1.02 }}
+              className="prose prose-lg backdrop-blur-md bg-white/10 p-8 rounded-[2rem] border border-white/20 shadow-2xl hover:shadow-3xl transition-all duration-300"
+              whileHover={{ scale: 1.02, rotateY: 2 }}
               transition={{ type: "spring", stiffness: 300 }}
             >
-              <p className="text-warm-gray">
-                L'impatto del revanscismo sulla storia europea include:
+              <h3 className="text-2xl font-playfair mb-4 text-prussian-blue">Impatto Politico</h3>
+              <p className="text-warm-gray mb-4">
+                Il revanscismo influenzò profondamente la politica europea:
               </p>
-              <ul className="list-disc pl-6 text-warm-gray">
-                <li>Formazione della Triplice Alleanza</li>
-                <li>Riallineamento delle alleanze europee</li>
-                <li>Corsa agli armamenti</li>
-                <li>Tensioni che portarono alla Prima Guerra Mondiale</li>
+              <ul className="text-warm-gray space-y-2">
+                {[
+                  "Formazione di alleanze militari",
+                  "Corsa agli armamenti",
+                  "Nazionalismo estremo",
+                  "Politica estera aggressiva",
+                  "Tensioni diplomatiche",
+                  "Propaganda nazionalista",
+                  "Militarizzazione della società",
+                  "Preparazione alla guerra"
+                ].map((item, index) => (
+                  <motion.li
+                    key={index}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 }}
+                    whileHover={{ x: 10 }}
+                  >
+                    {item}
+                  </motion.li>
+                ))}
               </ul>
             </motion.div>
             <motion.div 
-              className="relative transform-gpu"
-              whileHover={{ scale: 1.05, rotateY: 5 }}
+              className="prose prose-lg backdrop-blur-md bg-white/10 p-8 rounded-[2rem] border border-white/20 shadow-2xl hover:shadow-3xl transition-all duration-300"
+              whileHover={{ scale: 1.02, rotateY: -2 }}
               transition={{ type: "spring", stiffness: 300 }}
             >
-              <div className="absolute inset-0 bg-imperial-gold/10 transform -rotate-3 rounded-[2rem]" />
-              <img 
-                src="/images/european-alliances.jpg" 
-                alt="Alleanze europee" 
-                className="relative rounded-[2rem] shadow-2xl"
-              />
+              <h3 className="text-2xl font-playfair mb-4 text-prussian-blue">Impatto Sociale</h3>
+              <p className="text-warm-gray mb-4">
+                Le conseguenze sociali del revanscismo furono significative:
+              </p>
+              <ul className="text-warm-gray space-y-2">
+                {[
+                  "Nazionalizzazione delle masse",
+                  "Propaganda patriottica",
+                  "Educazione militarizzata",
+                  "Cultura della vendetta",
+                  "Identità nazionale",
+                  "Memoria collettiva",
+                  "Tradizioni militari",
+                  "Simboli nazionali"
+                ].map((item, index) => (
+                  <motion.li
+                    key={index}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 }}
+                    whileHover={{ x: 10 }}
+                  >
+                    {item}
+                  </motion.li>
+                ))}
+              </ul>
             </motion.div>
           </div>
         </motion.section>
 
-        {/* Response */}
+        {/* Cultural Impact */}
         <motion.section 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -295,22 +389,80 @@ const Revanchism: React.FC = () => {
               repeatType: "reverse",
             }}
           >
-            La Risposta di Bismarck
+            Impatto Culturale
           </motion.h2>
-          <motion.div 
-            className="backdrop-blur-md bg-white/10 p-12 rounded-[2rem] border border-white/20 shadow-2xl"
-            whileHover={{ scale: 1.02 }}
-            transition={{ type: "spring", stiffness: 300 }}
-          >
-            <blockquote className="text-3xl font-crimson italic text-warm-gray mb-8">
-              "La Francia non dimenticherà mai la perdita dell'Alsazia-Lorena."
-            </blockquote>
-            <p className="text-warm-gray text-lg">
-              Bismarck rispose al revanscismo francese con una politica di isolamento diplomatico, 
-              creando un sistema di alleanze che mantenne la Francia isolata e prevenne una guerra 
-              di vendetta. La sua strategia fu efficace fino alla sua caduta nel 1890.
-            </p>
-          </motion.div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              { 
+                icon: FaBook, 
+                title: "Letteratura", 
+                text: "Influenza sulla cultura e le arti",
+                details: [
+                  "Romanzi patriottici",
+                  "Poesia nazionalista",
+                  "Teatro politico",
+                  "Giornalismo militante"
+                ]
+              },
+              { 
+                icon: FaPalette, 
+                title: "Arti Visive", 
+                text: "Rappresentazioni artistiche",
+                details: [
+                  "Pittura storica",
+                  "Monumenti commemorativi",
+                  "Cartografia politica",
+                  "Simboli nazionali"
+                ]
+              },
+              { 
+                icon: FaMusic, 
+                title: "Musica", 
+                text: "Espressione musicale",
+                details: [
+                  "Inni nazionali",
+                  "Marce militari",
+                  "Opera patriottica",
+                  "Canzoni popolari"
+                ]
+              }
+            ].map((item, index) => (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                whileHover={{ y: -8, scale: 1.02, rotateY: 5 }}
+                className="backdrop-blur-md bg-white/10 p-8 rounded-[2rem] border border-white/20 shadow-2xl transform-gpu hover:shadow-3xl transition-all duration-300"
+              >
+                <motion.div
+                  whileHover={{ scale: 1.2, rotate: 10 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                  className="mb-6"
+                >
+                  <item.icon className="text-5xl text-imperial-gold" />
+                </motion.div>
+                <h3 className="text-2xl font-playfair mb-4 text-prussian-blue">{item.title}</h3>
+                <p className="text-warm-gray text-lg mb-4">{item.text}</p>
+                <ul className="text-warm-gray space-y-2">
+                  {item.details.map((detail, i) => (
+                    <motion.li
+                      key={i}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.1 }}
+                      whileHover={{ x: 10 }}
+                      className="text-sm"
+                    >
+                      {detail}
+                    </motion.li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
+          </div>
         </motion.section>
 
         {/* Legacy */}
@@ -333,32 +485,73 @@ const Revanchism: React.FC = () => {
           >
             L'Eredità
           </motion.h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              { icon: FaChartLine, title: "Politica Estera", text: "Influenza sulle alleanze europee" },
-              { icon: FaHandshake, title: "Diplomazia", text: "Sviluppo di nuove strategie diplomatiche" },
-              { icon: FaCrown, title: "Nazionalismo", text: "Rafforzamento dei sentimenti nazionalisti" }
-            ].map((item, index) => (
-              <motion.div
-                key={item.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                whileHover={{ y: -8, scale: 1.02 }}
-                className="backdrop-blur-md bg-white/10 p-8 rounded-[2rem] border border-white/20 shadow-2xl transform-gpu"
-              >
-                <motion.div
-                  whileHover={{ scale: 1.2, rotate: 10 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                  className="mb-6"
-                >
-                  <item.icon className="text-5xl text-imperial-gold" />
-                </motion.div>
-                <h3 className="text-2xl font-playfair mb-4 text-prussian-blue">{item.title}</h3>
-                <p className="text-warm-gray text-lg">{item.text}</p>
-              </motion.div>
-            ))}
+          <div className="grid md:grid-cols-2 gap-12">
+            <motion.div 
+              className="prose prose-lg backdrop-blur-md bg-white/10 p-8 rounded-[2rem] border border-white/20 shadow-2xl hover:shadow-3xl transition-all duration-300"
+              whileHover={{ scale: 1.02, rotateY: 2 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <h3 className="text-2xl font-playfair mb-4 text-prussian-blue">Conseguenze a Lungo Termine</h3>
+              <p className="text-warm-gray mb-4">
+                Il revanscismo lasciò un'eredità duratura:
+              </p>
+              <ul className="text-warm-gray space-y-2">
+                {[
+                  "Prima Guerra Mondiale",
+                  "Trattato di Versailles",
+                  "Seconda Guerra Mondiale",
+                  "Integrazione europea",
+                  "Riconciliazione franco-tedesca",
+                  "Unione Europea",
+                  "Memoria storica",
+                  "Lezioni per il futuro"
+                ].map((item, index) => (
+                  <motion.li
+                    key={index}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 }}
+                    whileHover={{ x: 10 }}
+                  >
+                    {item}
+                  </motion.li>
+                ))}
+              </ul>
+            </motion.div>
+            <motion.div 
+              className="prose prose-lg backdrop-blur-md bg-white/10 p-8 rounded-[2rem] border border-white/20 shadow-2xl hover:shadow-3xl transition-all duration-300"
+              whileHover={{ scale: 1.02, rotateY: -2 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <h3 className="text-2xl font-playfair mb-4 text-prussian-blue">Lezioni per il Presente</h3>
+              <p className="text-warm-gray mb-4">
+                Il revanscismo offre importanti insegnamenti:
+              </p>
+              <ul className="text-warm-gray space-y-2">
+                {[
+                  "Importanza della diplomazia",
+                  "Pericoli del nazionalismo",
+                  "Valore della cooperazione",
+                  "Necessità di compromesso",
+                  "Gestione dei conflitti",
+                  "Memoria storica",
+                  "Riconciliazione",
+                  "Pace duratura"
+                ].map((item, index) => (
+                  <motion.li
+                    key={index}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 }}
+                    whileHover={{ x: 10 }}
+                  >
+                    {item}
+                  </motion.li>
+                ))}
+              </ul>
+            </motion.div>
           </div>
         </motion.section>
       </div>

@@ -112,7 +112,7 @@ const ForeignPolicy: React.FC = () => {
                 repeatType: "reverse",
               }}
             >
-              Politica Estera
+              Otto von Bismarck: Architetto della Diplomazia Europea
             </motion.h1>
             <motion.p 
               className="text-2xl md:text-3xl font-crimson italic text-ivory/90"
@@ -120,7 +120,7 @@ const ForeignPolicy: React.FC = () => {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.6 }}
             >
-              L'architetto dell'equilibrio europeo
+              Maestro della Realpolitik: Un equilibrio sottile tra interessi nazionali e pace europea.
             </motion.p>
           </motion.div>
         </div>
@@ -137,10 +137,10 @@ const ForeignPolicy: React.FC = () => {
         >
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { icon: FaHistory, title: "Anni di Pace", value: "19", text: "Anni di pace mantenuta in Europa durante il cancellierato" },
-              { icon: FaHandshake, title: "Trattati", value: "12", text: "Trattati diplomatici principali negoziati" },
-              { icon: FaFlag, title: "Colonie", value: "4", text: "Principali colonie africane acquisite" },
-              { icon: FaUsers, title: "Alleanze", value: "3", text: "Principali alleanze strategiche create" }
+              { icon: FaHistory, title: "Unificazione della Germania", value: "1871", text: "La Germania fu unificata sotto la guida di Otto von Bismarck" },
+              { icon: FaHandshake, title: "Alleanza con l'Austria", value: "1879", text: "La Germania e l'Austria firmarono un trattato di alleanza" },
+              { icon: FaFlag, title: "Conquista della Francia", value: "1870", text: "La Germania sconfisse la Francia nella guerra franco-prussiana" },
+              { icon: FaUsers, title: "Popolazione della Germania", value: "41 milioni", text: "La popolazione della Germania aumentò notevolmente dopo l'unificazione" }
             ].map((item, index) => (
               <motion.div
                 key={item.title}
@@ -160,7 +160,7 @@ const ForeignPolicy: React.FC = () => {
                 </motion.div>
                 <h3 className="text-2xl font-playfair mb-2 text-prussian-blue">{item.title}</h3>
                 <p className="text-4xl font-bold text-imperial-gold mb-2">{item.value}</p>
-                <p className="text-warm-gray text-lg">{item.text}</p>
+                <p className="text-warm-gray">{item.text}</p>
               </motion.div>
             ))}
           </div>
@@ -184,7 +184,7 @@ const ForeignPolicy: React.FC = () => {
               repeatType: "reverse",
             }}
           >
-            La Visione Diplomatica
+            La visione diplomatica di Bismarck
           </motion.h2>
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <motion.div 
@@ -193,13 +193,13 @@ const ForeignPolicy: React.FC = () => {
               transition={{ type: "spring", stiffness: 300 }}
             >
               <p className="text-warm-gray">
-                La politica estera di Bismarck fu caratterizzata da un approccio pragmatico e realista, mirato a mantenere la pace in Europa e a proteggere gli interessi della Germania. Dopo l'unificazione, il suo obiettivo principale era consolidare la posizione della Germania come potenza continentale senza provocare una grande guerra.
+                La visione diplomatica di Bismarck era basata sulla convinzione che la Germania dovesse essere una potenza continentale e che la sua posizione dovesse essere consolidata attraverso una serie di alleanze e trattati.
               </p>
               <p className="text-warm-gray">
-                Attraverso un complesso sistema di alleanze e una diplomazia abile, Bismarck riuscì a mantenere l'equilibrio di potere in Europa per quasi due decenni. La sua strategia di 'saturazione' e 'equilibrio' prevenne la formazione di coalizioni anti-tedesche e mantenne la Germania al centro del sistema internazionale.
+                Egli credeva che la Germania dovesse essere una potenza militare e che la sua forza dovesse essere utilizzata per mantenere la pace in Europa.
               </p>
               <p className="text-warm-gray">
-                La sua Realpolitik combinava interessi nazionali con considerazioni strategiche, dimostrando una straordinaria capacità di navigare tra le complesse relazioni tra le potenze europee. Questo approccio, sebbene talvolta cinico, garantì un periodo di relativa stabilità in Europa dopo i tumultuosi anni dell'unificazione tedesca.
+                La sua visione diplomatica fu caratterizzata da una serie di alleanze e trattati che gli permisero di mantenere la pace in Europa e di consolidare la posizione della Germania come potenza dominante.
               </p>
             </motion.div>
             <motion.div 
@@ -235,87 +235,75 @@ const ForeignPolicy: React.FC = () => {
               repeatType: "reverse",
             }}
           >
-            Le Strategie Diplomatiche
+            Le strategie diplomatiche di Bismarck
           </motion.h2>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
                 id: "alleanze",
-                title: "Sistema di Alleanze",
+                title: "Alleanze",
                 icon: FaHandshake,
-                description: "La rete di alleanze per mantenere l'equilibrio europeo.",
-                content: "Bismarck creò un complesso sistema di alleanze per isolare la Francia e mantenere la pace in Europa. La Lega dei Tre Imperatori (1873) unì Germania, Austria-Ungheria e Russia. Il Trattato di Duplice Alleanza (1879) con l'Austria-Ungheria e la Triplice Alleanza (1882) con Italia e Austria-Ungheria formarono il nucleo della sua diplomazia.",
+                description: "La Germania firmò una serie di alleanze con altre potenze europee per consolidare la sua posizione",
+                content: "La Germania firmò alleanze con l'Austria, la Russia e l'Italia per creare un sistema di alleanze che le permettesse di mantenere la pace in Europa",
                 timeline: [
-                  "1873: Lega dei Tre Imperatori",
-                  "1879: Trattato di Duplice Alleanza con l'Austria-Ungheria",
-                  "1882: Triplice Alleanza con Italia e Austria-Ungheria",
-                  "1887: Trattato di Riassicurazione con la Russia"
+                  "1879: La Germania e l'Austria firmarono un trattato di alleanza",
+                  "1882: La Germania, l'Austria e l'Italia firmarono la Triplice Alleanza",
+                  "1887: La Germania e la Russia firmarono un trattato di alleanza"
                 ]
               },
               {
                 id: "francia",
-                title: "Isolamento della Francia",
+                title: "Conquista della Francia",
                 icon: FaShieldAlt,
-                description: "La strategia per contenere la potenza francese.",
-                content: "Dopo la guerra franco-prussiana, Bismarck lavorò per isolare diplomaticamente la Francia. Attraverso il Congresso di Berlino (1878) e varie alleanze, impedì alla Francia di trovare alleati in Europa. La sua politica di 'saturazione' mirava a mantenere la Francia debole ma non umiliata.",
+                description: "La Germania sconfisse la Francia nella guerra franco-prussiana",
+                content: "La Germania sconfisse la Francia nella guerra franco-prussiana e annesse l'Alsazia e la Lorena",
                 timeline: [
-                  "1871: Fine della guerra franco-prussiana",
-                  "1875: Crisi di guerra in vista",
-                  "1878: Congresso di Berlino",
-                  "1882: Triplice Alleanza per isolare la Francia"
+                  "1870: La Germania sconfisse la Francia nella battaglia di Sedan",
+                  "1871: La Germania annesse l'Alsazia e la Lorena"
                 ]
               },
               {
                 id: "colonie",
-                title: "Politica Coloniale",
+                title: "Colonie",
                 icon: FaGlobeEurope,
-                description: "L'espansione dell'influenza tedesca oltre l'Europa.",
-                content: "Sebbene inizialmente scettico, Bismarck fu coinvolto nella corsa alle colonie per ragioni politiche interne. La Germania acquisì territori in Africa (Togo, Camerun, Africa Sud-Occidentale, Africa Orientale Tedesca) e nel Pacifico.",
+                description: "La Germania creò un impero coloniale",
+                content: "La Germania creò un impero coloniale in Africa e in Asia",
                 timeline: [
-                  "1884: Conferenza di Berlino sul Congo",
-                  "1884: Acquisizione di Togo e Camerun",
-                  "1885: Africa Orientale Tedesca",
-                  "1890: Trattato di Helgoland-Zanzibar"
+                  "1884: La Germania creò la colonia del Togo",
+                  "1885: La Germania creò la colonia del Camerun"
                 ]
               },
               {
                 id: "congresso",
                 title: "Congresso di Berlino",
                 icon: FaBalanceScale,
-                description: "La mediazione nella crisi balcanica.",
-                content: "Nel 1878, Bismarck ospitò il Congresso di Berlino per risolvere la crisi balcanica. Come 'onesto mediatore', riuscì a prevenire una guerra tra le grandi potenze, ridisegnando i confini balcanici e mantenendo l'equilibrio di potere.",
+                description: "La Germania partecipò al Congresso di Berlino",
+                content: "La Germania partecipò al Congresso di Berlino per discutere la questione orientale",
                 timeline: [
-                  "1877: Guerra russo-turca",
-                  "1878: Trattato di San Stefano",
-                  "1878: Congresso di Berlino",
-                  "1878: Trattato di Berlino"
+                  "1878: La Germania partecipò al Congresso di Berlino"
                 ]
               },
               {
                 id: "russia",
                 title: "Relazioni con la Russia",
                 icon: FaChessKnight,
-                description: "Il delicato equilibrio con l'Impero zarista.",
-                content: "Bismarck mantenne relazioni complesse con la Russia, alternando tra la Lega dei Tre Imperatori e il Trattato di Riassicurazione (1887). Cercò di prevenire un'alleanza franco-russa che avrebbe minacciato la Germania su due fronti.",
+                description: "La Germania ebbe relazioni complesse con la Russia",
+                content: "La Germania ebbe relazioni complesse con la Russia, che furono caratterizzate da periodi di alleanza e di conflitto",
                 timeline: [
-                  "1873: Lega dei Tre Imperatori",
-                  "1881: Rinnovo della Lega dei Tre Imperatori",
-                  "1887: Trattato di Riassicurazione",
-                  "1890: Fine del Trattato di Riassicurazione"
+                  "1879: La Germania e la Russia firmarono un trattato di alleanza",
+                  "1887: La Germania e la Russia firmarono un trattato di non aggressione"
                 ]
               },
               {
                 id: "potenza",
-                title: "Politica di Potenza",
+                title: "Potenza",
                 icon: FaCrown,
-                description: "L'equilibrio tra diplomazia e forza militare.",
-                content: "La politica estera di Bismarck combinò diplomazia abile e deterrenza militare. Mantenne un esercito forte come garanzia di sicurezza, ma preferì risolvere le crisi attraverso la diplomazia.",
+                description: "La Germania divenne una potenza mondiale",
+                content: "La Germania divenne una potenza mondiale grazie alla sua industria, alla sua tecnologia e alla sua forza militare",
                 timeline: [
-                  "1871: Unificazione tedesca",
-                  "1875: Crisi di guerra in vista",
-                  "1887: Crisi bulgara",
-                  "1890: Dimissioni di Bismarck"
+                  "1871: La Germania divenne una potenza continentale",
+                  "1880: La Germania divenne una potenza mondiale"
                 ]
               }
             ].map((item, index) => (
@@ -326,7 +314,7 @@ const ForeignPolicy: React.FC = () => {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
                 whileHover={{ y: -8, scale: 1.02 }}
-                className={`backdrop-blur-md bg-white/10 p-8 rounded-[2rem] border border-white/20 shadow-2xl transform-gpu cursor-pointer group relative ${
+                className={`backdrop-blur-md bg-white/10 p-8 rounded-[2rem] border border-white/20 shadow-2xl transform-gpu cursor-pointer group ${
                   expandedCard === item.id ? 'md:col-span-2 lg:col-span-3' : ''
                 }`}
                 onClick={() => setExpandedCard(expandedCard === item.id ? null : item.id)}
@@ -357,7 +345,7 @@ const ForeignPolicy: React.FC = () => {
                       <h4 className="text-xl font-playfair mb-2 text-prussian-blue">Timeline:</h4>
                       <ul className="list-disc pl-6 text-warm-gray">
                         {item.timeline.map((event, i) => (
-                          <li key={i} className="mb-2">{event}</li>
+                          <li key={i}>{event}</li>
                         ))}
                       </ul>
                     </div>
@@ -404,12 +392,12 @@ const ForeignPolicy: React.FC = () => {
             >
               <h3 className="text-2xl font-playfair mb-4 text-prussian-blue">Successi</h3>
               <ul className="list-disc pl-6 text-warm-gray">
-                <li>Mantenimento della pace in Europa per quasi due decenni</li>
-                <li>Isolamento diplomatico della Francia</li>
-                <li>Creazione di un sistema di alleanze stabile</li>
-                <li>Prevenzione di una guerra su due fronti</li>
-                <li>Consolidamento della posizione della Germania come potenza continentale</li>
-                <li>Mediazione efficace nelle crisi internazionali</li>
+                <li>La Germania divenne una potenza mondiale</li>
+                <li>La Germania creò un impero coloniale</li>
+                <li>La Germania ebbe relazioni complesse con la Russia</li>
+                <li>La Germania partecipò al Congresso di Berlino</li>
+                <li>La Germania sconfisse la Francia nella guerra franco-prussiana</li>
+                <li>La Germania firmò una serie di alleanze con altre potenze europee</li>
               </ul>
             </motion.div>
             <motion.div 
@@ -425,59 +413,6 @@ const ForeignPolicy: React.FC = () => {
               />
             </motion.div>
           </div>
-
-          <motion.div 
-            className="mt-12 backdrop-blur-md bg-white/10 p-8 rounded-[2rem] border border-white/20 shadow-2xl"
-            whileHover={{ scale: 1.02 }}
-            transition={{ type: "spring", stiffness: 300 }}
-          >
-            <h3 className="text-2xl font-playfair mb-4 text-prussian-blue">Sfide</h3>
-            <ul className="list-disc pl-6 text-warm-gray">
-              <li>Tensioni crescenti con la Russia</li>
-              <li>Complessità del sistema di alleanze</li>
-              <li>Pressioni per l'espansione coloniale</li>
-              <li>Rivalità con la Gran Bretagna</li>
-              <li>Instabilità nei Balcani</li>
-              <li>Difficoltà nel mantenere l'equilibrio di potere</li>
-            </ul>
-          </motion.div>
-        </motion.section>
-
-        {/* Eredità Diplomatica */}
-        <motion.section 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-24"
-        >
-          <motion.h2 
-            className="text-4xl font-playfair mb-12 text-prussian-blue bg-clip-text text-transparent bg-gradient-to-r from-prussian-blue via-prussian-blue/80 to-prussian-blue"
-            animate={{
-              backgroundPosition: ["0%", "100%"],
-            }}
-            transition={{
-              duration: 5,
-              repeat: Infinity,
-              repeatType: "reverse",
-            }}
-          >
-            L'Eredità Diplomatica
-          </motion.h2>
-          <motion.div 
-            className="prose prose-lg backdrop-blur-md bg-white/10 p-8 rounded-[2rem] border border-white/20 shadow-2xl"
-            whileHover={{ scale: 1.02 }}
-            transition={{ type: "spring", stiffness: 300 }}
-          >
-            <p className="text-warm-gray">
-              La politica estera di Bismarck ha lasciato un'impronta duratura sulla diplomazia europea. Il suo sistema di alleanze e la sua Realpolitik influenzarono profondamente le relazioni internazionali del XX secolo. La sua capacità di mantenere l'equilibrio di potere attraverso una complessa rete di alleanze e trattati divenne un modello per la diplomazia moderna.
-            </p>
-            <p className="text-warm-gray">
-              Tuttavia, la complessità del suo sistema di alleanze e la sua dipendenza dalla sua straordinaria abilità diplomatica resero il sistema fragile dopo la sua partenza. La sua eredità dimostra sia i vantaggi di una diplomazia pragmatica e realista, sia i rischi di un sistema internazionale troppo dipendente dalla personalità di un singolo statista.
-            </p>
-            <p className="text-warm-gray">
-              La sua visione di un'Europa stabile basata sull'equilibrio di potere e sulla diplomazia multilaterale continua a influenzare il pensiero strategico contemporaneo. Tuttavia, il suo approccio autoritario e la sua diffidenza verso le istituzioni internazionali rappresentano anche un monito sulla necessità di bilanciare interessi nazionali e cooperazione internazionale.
-            </p>
-          </motion.div>
         </motion.section>
       </div>
     </div>

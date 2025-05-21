@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion';
 import { Chrono } from 'react-chrono';
-import { FaCrown, FaScroll, FaBalanceScale, FaMapMarkedAlt, FaShieldAlt, FaHandshake, FaBook } from 'react-icons/fa';
+import { FaCrown, FaBalanceScale, FaMapMarkedAlt, FaShieldAlt, FaHandshake, FaBook } from 'react-icons/fa';
 
 const Bismarck: React.FC = () => {
   const { scrollY } = useScroll();
@@ -42,58 +42,40 @@ const Bismarck: React.FC = () => {
 
   const timelineItems = [
     {
-      title: "1815",
-      cardTitle: "Nascita di Bismarck",
-      cardSubtitle: "Schönhausen, Prussia",
-      cardDetailedText: "Otto von Bismarck nasce in una famiglia aristocratica prussiana."
-    },
-    {
-      title: "1847",
-      cardTitle: "Inizio della Carriera Politica",
-      cardSubtitle: "Berlino",
-      cardDetailedText: "Bismarck viene eletto al Parlamento Prussiano come rappresentante conservatore."
-    },
-    {
-      title: "1862",
-      cardTitle: "Cancelliere di Prussia",
-      cardSubtitle: "Berlino",
-      cardDetailedText: "Nominato Ministro-Presidente e Ministro degli Esteri della Prussia."
-    },
-    {
       title: "1864",
-      cardTitle: "Guerra dei Ducati",
-      cardSubtitle: "Schleswig-Holstein",
-      cardDetailedText: "Bismarck guida la Prussia nella vittoriosa guerra contro la Danimarca."
+      cardTitle: "Guerra contro la Danimarca",
+      cardSubtitle: "La Prussia conquista territori danesi",
+      cardDetailedText: "La Prussia conquista territori danesi, primo passo verso l'unificazione tedesca."
     },
     {
       title: "1866",
-      cardTitle: "Guerra Austro-Prussiana",
-      cardSubtitle: "Europa Centrale",
-      cardDetailedText: "La Prussia sconfigge l'Austria, consolidando il suo potere nella Confederazione Germanica."
+      cardTitle: "Guerra contro l'Austria",
+      cardSubtitle: "La Prussia esclude l'Austria dalla guida del mondo germanico",
+      cardDetailedText: "Con la vittoria prussiana, l'Austria viene esclusa dalla guida della Confederazione Tedesca."
     },
     {
-      title: "1870-71",
-      cardTitle: "Guerra Franco-Prussiana",
-      cardSubtitle: "Francia",
-      cardDetailedText: "La Prussia sconfigge la Francia, portando all'unificazione tedesca."
+      title: "1870",
+      cardTitle: "Guerra contro la Francia",
+      cardSubtitle: "Vittoria su Napoleone III",
+      cardDetailedText: "La vittoria sulla Francia rafforza il prestigio tedesco in Europa."
     },
     {
       title: "1871",
-      cardTitle: "Unificazione Tedesca",
-      cardSubtitle: "Versailles",
-      cardDetailedText: "Proclamazione dell'Impero Tedesco e Bismarck diventa il primo Cancelliere."
+      cardTitle: "Proclamazione del Secondo Reich",
+      cardSubtitle: "Unificazione della Germania",
+      cardDetailedText: "Viene proclamato l'Impero Tedesco con Guglielmo I come imperatore."
     },
     {
-      title: "1878",
-      cardTitle: "Congresso di Berlino",
-      cardSubtitle: "Berlino",
-      cardDetailedText: "Bismarck media la pace tra le potenze europee, consolidando il suo ruolo di 'onesto mediatore'."
+      title: "1870-1914",
+      cardTitle: "Periodo di pace in Europa",
+      cardSubtitle: "Mantenuto grazie alla diplomazia bismarckiana",
+      cardDetailedText: "Bismarck mantiene l'equilibrio europeo attraverso un'attenta politica di alleanze."
     },
     {
       title: "1890",
-      cardTitle: "Dimissioni",
-      cardSubtitle: "Berlino",
-      cardDetailedText: "Bismarck si dimette dopo il contrasto con il nuovo Kaiser Guglielmo II."
+      cardTitle: "Fine del governo di Bismarck",
+      cardSubtitle: "",
+      cardDetailedText: "Bismarck si dimette dalla carica di Cancelliere."
     }
   ];
 
@@ -175,7 +157,7 @@ const Bismarck: React.FC = () => {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.6 }}
             >
-              L'architetto dell'unità tedesca
+              L'architetto dell'unità tedesca e custode dell'equilibrio europeo
             </motion.p>
           </motion.div>
         </div>
@@ -201,7 +183,7 @@ const Bismarck: React.FC = () => {
               repeatType: "reverse",
             }}
           >
-            La Visione
+            
           </motion.h2>
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <motion.div 
@@ -209,14 +191,12 @@ const Bismarck: React.FC = () => {
               whileHover={{ scale: 1.02 }}
               transition={{ type: "spring", stiffness: 300 }}
             >
-              <p className="text-warm-gray">
-                Otto von Bismarck (1815-1898) fu una delle figure più influenti della storia europea del XIX secolo. 
-                Conosciuto come il "Cancelliere di Ferro", fu l'artefice principale dell'unificazione tedesca e il 
-                primo Cancelliere dell'Impero Tedesco.
+              <h3 className="text-2xl font-playfair mb-4 text-prussian-blue">Alleanze Diplomatiche</h3>
+              <p className="text-warm-gray mb-4">
+                Durante il suo governo, Bismarck costruì una fitta rete di alleanze (Austria-Ungheria, Italia, Russia) per evitare lo scontro diretto tra le potenze europee e mantenere l'equilibrio. Grazie alla sua abilità diplomatica, riuscì a impedire conflitti tra i grandi Stati fino alla sua uscita di scena.
               </p>
               <p className="text-warm-gray">
-                La sua politica realista e il suo genio diplomatico trasformarono la Prussia in una potenza 
-                continentale, gettando le basi per la Germania moderna.
+                La Germania fu considerata l'"ago della bilancia" nei rapporti internazionali, con Bismarck che seppe abilmente mantenere l'equilibrio tra le potenze europee attraverso un complesso sistema di alleanze e trattati.
               </p>
             </motion.div>
             <motion.div 
@@ -227,7 +207,7 @@ const Bismarck: React.FC = () => {
               <div className="absolute inset-0 bg-imperial-gold/10 transform rotate-3 rounded-[2rem]" />
               <img 
                 src="/images/bismarck-statue.jpg" 
-                alt="Statua di Bismarck" 
+                alt="" 
                 className="relative rounded-[2rem] shadow-2xl"
               />
             </motion.div>
@@ -252,14 +232,30 @@ const Bismarck: React.FC = () => {
               repeatType: "reverse",
             }}
           >
-            Le Conquiste
+            
           </motion.h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { icon: FaCrown, title: "Unificazione", text: "Unificazione degli stati tedeschi sotto la guida prussiana" },
-              { icon: FaBalanceScale, title: "Diplomazia", text: "Sistema di alleanze che mantenne la pace in Europa" },
-              { icon: FaScroll, title: "Riforme", text: "Modernizzazione dello stato e welfare sociale" },
-              { icon: FaMapMarkedAlt, title: "Espansione", text: "Acquisizione di colonie e potenza navale" }
+              { 
+                icon: FaShieldAlt, 
+                title: "Conquiste Militari", 
+                text: "Bismarck portò la Germania a una posizione dominante grazie a una serie di vittorie militari contro Danimarca, Austria e Francia." 
+              },
+              { 
+                icon: FaMapMarkedAlt, 
+                title: "Espansione Territoriale", 
+                text: "Sotto la sua guida, la Prussia prima e la Germania poi acquisirono nuovi territori, ampliando notevolmente la loro influenza in Europa." 
+              },
+              { 
+                icon: FaBalanceScale, 
+                title: "Politica di Potenza", 
+                text: "Attuò la 'Machtpolitik', rafforzando esercito, flotta, infrastrutture e industria per affermare la Germania come potenza egemone." 
+              },
+              { 
+                icon: FaCrown, 
+                title: "Secondo Reich", 
+                text: "La proclamazione del Secondo Reich nel 1871 segnò l'apice della sua carriera politica e l'inizio di una nuova era per la Germania." 
+              }
             ].map((item, index) => (
               <motion.div
                 key={item.title}
@@ -302,7 +298,7 @@ const Bismarck: React.FC = () => {
               repeatType: "reverse",
             }}
           >
-            La Timeline Storica
+            
           </motion.h2>
           <motion.div 
             className="backdrop-blur-md bg-white/10 p-8 rounded-[2rem] border border-white/20 shadow-2xl"
@@ -326,6 +322,59 @@ const Bismarck: React.FC = () => {
           </motion.div>
         </motion.section>
 
+        {/* Riforme Sociali ed Economiche */}
+        <motion.section 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-24"
+        >
+          <motion.h2 
+            className="text-4xl font-playfair mb-6 text-prussian-blue"
+          >
+            Riforme Sociali ed Economiche
+          </motion.h2>
+          <div className="grid md:grid-cols-2 gap-12">
+            <motion.div 
+              className="backdrop-blur-md bg-white/10 p-8 rounded-[2rem] border border-white/20 shadow-2xl"
+              whileHover={{ scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <h3 className="text-2xl font-playfair mb-4 text-prussian-blue">Politiche Economiche</h3>
+              <p className="text-warm-gray mb-4">
+                Negli anni Settanta e Ottanta, Bismarck introdusse misure protezionistiche per difendere l'economia nazionale dalla concorrenza estera. Queste includevano:
+              </p>
+              <ul className="list-disc pl-6 text-warm-gray mb-4 space-y-2">
+                <li>Tariffe doganali protettive</li>
+                <li>Sostegno ai cartelli industriali</li>
+                <li>Limitazione delle importazioni</li>
+                <li>Controllo sul commercio estero</li>
+              </ul>
+              <p className="text-warm-gray">
+                Queste politiche frenarono il libero scambio e furono successivamente imitate da altri Paesi europei.
+              </p>
+            </motion.div>
+            <motion.div 
+              className="backdrop-blur-md bg-white/10 p-8 rounded-[2rem] border border-white/20 shadow-2xl"
+              whileHover={{ scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <h3 className="text-2xl font-playfair mb-4 text-prussian-blue">Riforme Sociali</h3>
+              <p className="text-warm-gray mb-4">
+                Nonostante il carattere autoritario del suo governo, Bismarck introdusse importanti riforme sociali che garantirono stabilità e crescita:
+              </p>
+              <ul className="list-disc pl-6 text-warm-gray space-y-2">
+                <li>Assicurazione contro gli infortuni (1884)</li>
+                <li>Assicurazione malattia (1883)</li>
+                <li>Assicurazione per l'invalidità e la vecchiaia (1889)</li>
+              </ul>
+              <p className="text-warm-gray mt-4">
+                Queste riforme posero le basi per il moderno stato sociale tedesco.
+              </p>
+            </motion.div>
+          </div>
+        </motion.section>
+
         {/* Legacy */}
         <motion.section 
           initial={{ opacity: 0, y: 20 }}
@@ -344,123 +393,28 @@ const Bismarck: React.FC = () => {
               repeatType: "reverse",
             }}
           >
-            L'Eredità
+            L'Eredità di Bismarck
           </motion.h2>
           <motion.div 
             className="backdrop-blur-md bg-white/10 p-12 rounded-[2rem] border border-white/20 shadow-2xl"
             whileHover={{ scale: 1.02 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
-            <blockquote className="text-3xl font-crimson italic text-warm-gray mb-8">
-              "La politica non è una scienza esatta, ma un'arte."
+            <p className="text-warm-gray text-lg leading-relaxed mb-6">
+              L'opera di Bismarck ha lasciato un'impronta indelebile nella storia europea. Il suo sistema di alleanze e la sua abilità diplomatica mantennero la pace in Europa per oltre quattro decenni, un periodo noto come l'"età bismarckiana".
+            </p>
+            <p className="text-warm-gray text-lg leading-relaxed mb-8">
+              Nonostante il carattere autoritario del suo governo, Bismarck seppe garantire stabilità e crescita alla Germania, ponendo le basi per la sua futura potenza industriale e militare. Le sue riforme sociali anticiparono il moderno stato sociale e la sua visione politica influenzò profondamente lo sviluppo della Germania e dell'Europa nel XX secolo.
+            </p>
+            <blockquote className="text-2xl font-crimson italic text-warm-gray border-l-4 border-imperial-gold pl-6 py-2 my-6">
+              "Non con i discorsi e le deliberazioni della maggioranza vengono risolte le grandi questioni del tempo - questo fu il grande errore del 1848 e del 1849 - bensì col ferro e col sangue."
             </blockquote>
-            <p className="text-warm-gray text-lg">
-              L'eredità di Bismarck continua a influenzare la politica e la diplomazia moderna. 
-              Il suo approccio pragmatico alla politica estera e le sue riforme sociali hanno 
-              lasciato un'impronta indelebile sulla storia europea.
+            <p className="text-warm-gray text-right text-lg mt-8">
+              - Otto von Bismarck
             </p>
           </motion.div>
         </motion.section>
 
-        {/* Diplomatic Achievements */}
-        <motion.section 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-24"
-        >
-          <motion.h2 
-            className="text-4xl font-playfair mb-12 text-prussian-blue bg-clip-text text-transparent bg-gradient-to-r from-prussian-blue via-prussian-blue/80 to-prussian-blue"
-            animate={{
-              backgroundPosition: ["0%", "100%"],
-            }}
-            transition={{
-              duration: 5,
-              repeat: Infinity,
-              repeatType: "reverse",
-            }}
-          >
-            Le Alleanze Diplomatiche
-          </motion.h2>
-          <div className="grid md:grid-cols-2 gap-12">
-            <motion.div 
-              className="prose prose-lg backdrop-blur-md bg-white/10 p-8 rounded-[2rem] border border-white/20 shadow-2xl"
-              whileHover={{ scale: 1.02 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
-              <p className="text-warm-gray">
-                Bismarck creò un complesso sistema di alleanze per mantenere l'equilibrio di potere in Europa:
-              </p>
-              <ul className="list-disc pl-6 text-warm-gray">
-                <li>L'Alleanza dei Tre Imperatori (1873)</li>
-                <li>La Duplice Alleanza con l'Austria-Ungheria (1879)</li>
-                <li>La Triplice Alleanza con Austria-Ungheria e Italia (1882)</li>
-                <li>Il Trattato di Riassicurazione con la Russia (1887)</li>
-              </ul>
-            </motion.div>
-            <motion.div 
-              className="relative transform-gpu"
-              whileHover={{ scale: 1.05, rotateY: 5 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
-              <div className="absolute inset-0 bg-imperial-gold/10 transform -rotate-3 rounded-[2rem]" />
-              <img 
-                src="/images/bismarck-diplomacy.jpg" 
-                alt="Bismarck al Congresso di Berlino" 
-                className="relative rounded-[2rem] shadow-2xl"
-              />
-            </motion.div>
-          </div>
-        </motion.section>
-
-        {/* Social Reforms */}
-        <motion.section 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-24"
-        >
-          <motion.h2 
-            className="text-4xl font-playfair mb-12 text-prussian-blue bg-clip-text text-transparent bg-gradient-to-r from-prussian-blue via-prussian-blue/80 to-prussian-blue"
-            animate={{
-              backgroundPosition: ["0%", "100%"],
-            }}
-            transition={{
-              duration: 5,
-              repeat: Infinity,
-              repeatType: "reverse",
-            }}
-          >
-            Le Riforme Sociali
-          </motion.h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              { icon: FaShieldAlt, title: "Assicurazione Malattia", text: "Primo sistema di assicurazione malattia obbligatoria (1883)" },
-              { icon: FaHandshake, title: "Assicurazione Infortuni", text: "Protezione dei lavoratori contro gli infortuni sul lavoro (1884)" },
-              { icon: FaBook, title: "Istruzione", text: "Riforma del sistema educativo e promozione della cultura tedesca" }
-            ].map((item, index) => (
-              <motion.div
-                key={item.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                whileHover={{ y: -8, scale: 1.02 }}
-                className="backdrop-blur-md bg-white/10 p-8 rounded-[2rem] border border-white/20 shadow-2xl transform-gpu"
-              >
-                <motion.div
-                  whileHover={{ scale: 1.2, rotate: 10 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                  className="mb-6"
-                >
-                  <item.icon className="text-5xl text-imperial-gold" />
-                </motion.div>
-                <h3 className="text-2xl font-playfair mb-4 text-prussian-blue">{item.title}</h3>
-                <p className="text-warm-gray text-lg">{item.text}</p>
-              </motion.div>
-            ))}
-          </div>
-        </motion.section>
       </div>
     </div>
   );

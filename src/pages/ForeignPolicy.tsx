@@ -193,13 +193,18 @@ const ForeignPolicy: React.FC = () => {
               transition={{ type: "spring", stiffness: 300 }}
             >
               <p className="text-warm-gray">
-                La visione diplomatica di Bismarck era basata sulla convinzione che la Germania dovesse essere una potenza continentale e che la sua posizione dovesse essere consolidata attraverso una serie di alleanze e trattati.
+              La politica estera di Otto von Bismarck fu improntata al pragmatismo e alla Realpolitik(approccio pratico e realistico ai problemi): il suo obiettivo principale, dopo l’unificazione della Germania nel 1871, era consolidare la posizione tedesca come potenza continentale senza provocare nuovi conflitti.  
               </p>
               <p className="text-warm-gray">
-                Egli credeva che la Germania dovesse essere una potenza militare e che la sua forza dovesse essere utilizzata per mantenere la pace in Europa.
+                Attraverso un abile sistema di alleanze e una diplomazia multilaterale, Bismarck riuscì a:
+                <ul className="list-disc pl-8 mt-4 space-y-2">
+                  <li>Mantenere la pace in Europa per 19 anni</li>
+                  <li>Evitare la formazione di coalizioni anti-tedesche</li>
+                  <li>Preservare l'equilibrio di potere tra le grandi potenze</li>
+                </ul>
               </p>
               <p className="text-warm-gray">
-                La sua visione diplomatica fu caratterizzata da una serie di alleanze e trattati che gli permisero di mantenere la pace in Europa e di consolidare la posizione della Germania come potenza dominante.
+              La sua strategia combinava gli interessi nazionali con considerazioni strategiche, spesso con approccio cinico, ma efficace.
               </p>
             </motion.div>
             <motion.div 
@@ -414,9 +419,87 @@ const ForeignPolicy: React.FC = () => {
             </motion.div>
           </div>
         </motion.section>
+
+        {/* Sfide e Limiti */}
+        <motion.section 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-24"
+        >
+          <motion.h2 
+            className="text-4xl font-playfair mb-12 text-prussian-blue bg-clip-text text-transparent bg-gradient-to-r from-prussian-blue via-prussian-blue/80 to-prussian-blue"
+            animate={{
+              backgroundPosition: ["0%", "100%"],
+            }}
+            transition={{
+              duration: 5,
+              repeat: Infinity,
+              repeatType: "reverse",
+            }}
+          >
+            Sfide e Limiti
+          </motion.h2>
+          <div className="grid md:grid-cols-2 gap-12">
+            <motion.div 
+              className="prose prose-lg backdrop-blur-md bg-white/10 p-8 rounded-[2rem] border border-white/20 shadow-2xl"
+              whileHover={{ scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <ul className="list-disc pl-6 text-warm-gray space-y-2">
+                <li>Tensioni con la Russia</li>
+                <li>Complessità e fragilità del sistema di alleanze</li>
+                <li>Pressioni per l'espansione coloniale</li>
+                <li>Rivalità crescente con il Regno Unito</li>
+                <li>Instabilità nei Balcani</li>
+                <li>Dipendenza dal carisma e dall'abilità personale di Bismarck</li>
+              </ul>
+            </motion.div>
+            <div className="h-full flex items-center justify-center">
+              <div className="w-full h-64 bg-prussian-blue/10 rounded-[2rem] flex items-center justify-center">
+                <FaBalanceScale className="text-6xl text-prussian-blue/30" />
+              </div>
+            </div>
+          </div>
+        </motion.section>
+
+        {/* Eredità Diplomatica */}
+        <motion.section 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-24"
+        >
+          <motion.h2 
+            className="text-4xl font-playfair mb-8 text-prussian-blue bg-clip-text text-transparent bg-gradient-to-r from-prussian-blue via-prussian-blue/80 to-prussian-blue"
+            animate={{
+              backgroundPosition: ["0%", "100%"],
+            }}
+            transition={{
+              duration: 5,
+              repeat: Infinity,
+              repeatType: "reverse",
+            }}
+          >
+            L'Eredità Diplomatica
+          </motion.h2>
+          <div className="prose prose-lg backdrop-blur-md bg-white/10 p-8 rounded-[2rem] border border-white/20 shadow-2xl">
+            <p className="text-warm-gray mb-6">
+              L'approccio di Bismarck ha segnato profondamente la diplomazia europea:
+            </p>
+            <ul className="list-disc pl-6 text-warm-gray space-y-2 mb-6">
+              <li>Il suo sistema multilaterale è stato modello per la diplomazia moderna</li>
+              <li>La Realpolitik ha dimostrato l'efficacia della pragmatica gestione degli interessi</li>
+              <li>Tuttavia, la dipendenza eccessiva da un solo statista ha reso fragile il sistema dopo le sue dimissioni (1890)</li>
+            </ul>
+            <p className="text-warm-gray font-medium italic">
+              Lezioni per il futuro: La diplomazia deve sapersi adattare
+            </p>
+          </div>
+        </motion.section>
       </div>
     </div>
   );
 };
 
-export default ForeignPolicy; 
+export default ForeignPolicy;

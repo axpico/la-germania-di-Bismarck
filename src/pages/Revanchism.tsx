@@ -50,7 +50,7 @@ const Revanchism: React.FC = () => {
       >
         <motion.div 
           style={{ y, opacity, scale }}
-          className="absolute inset-0 bg-[url('/images/alsace-lorraine.jpg')] bg-cover bg-center"
+          className="absolute inset-0 bg-[url('/images/irredentismo-italiano.jpg')] bg-cover bg-center"
         />
         <div className="absolute inset-0 bg-gradient-to-br from-prussian-blue/95 via-prussian-blue/85 to-prussian-blue/75" />
         
@@ -109,7 +109,7 @@ const Revanchism: React.FC = () => {
                 repeatType: "reverse",
               }}
             >
-              Revanscismo
+              Il Revanscismo
             </motion.h1>
             <motion.p 
               className="text-2xl md:text-3xl font-crimson italic text-ivory/90"
@@ -117,7 +117,7 @@ const Revanchism: React.FC = () => {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.6 }}
             >
-              La questione dell'Alsazia-Lorena
+              L'irredentismo italiano e le terre irredente
             </motion.p>
           </motion.div>
         </div>
@@ -143,7 +143,7 @@ const Revanchism: React.FC = () => {
               repeatType: "reverse",
             }}
           >
-            Le Origini del Conflitto
+            Le Origini del Revanscismo
           </motion.h2>
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <motion.div 
@@ -152,13 +152,13 @@ const Revanchism: React.FC = () => {
               transition={{ type: "spring", stiffness: 300 }}
             >
               <p className="text-warm-gray">
-                Il revanscismo francese emerse dopo la sconfitta nella guerra franco-prussiana del 1870-71 
-                e la perdita dell'Alsazia-Lorena. Questo sentimento di vendetta e desiderio di riconquista 
-                divenne un elemento centrale della politica francese e delle relazioni franco-tedesche.
+                Il revanscismo italiano nacque come movimento politico e culturale alla fine dell'Ottocento, con l'obiettivo di rivendicare i territori considerati "irredenti" - terre abitate in maggioranza da popolazioni di lingua italiana ma rimaste sotto il controllo straniero dopo l'Unità d'Italia.
               </p>
               <p className="text-warm-gray">
-                La questione territoriale divenne un simbolo del nazionalismo francese e una fonte di 
-                tensione duratura tra le due nazioni.
+                Le principali aree contese erano il Trentino-Alto Adige, la Venezia Giulia, la Dalmazia e la città di Nizza. Queste rivendicazioni territoriali erano sostenute da motivazioni storiche, culturali e linguistiche, e divennero un elemento centrale della politica estera italiana.
+              </p>
+              <p className="text-warm-gray">
+                Il movimento trovò sostegno sia tra gli intellettuali che tra la popolazione, alimentando un sentimento nazionalista che avrebbe avuto un ruolo significativo negli eventi che portarono alla Prima Guerra Mondiale.
               </p>
             </motion.div>
             <motion.div 
@@ -168,8 +168,8 @@ const Revanchism: React.FC = () => {
             >
               <div className="absolute inset-0 bg-imperial-gold/10 transform rotate-3 rounded-[2rem]" />
               <img 
-                src="/images/treaty-frankfurt.jpg" 
-                alt="Trattato di Francoforte" 
+                src="/images/terre-irredente.jpg" 
+                alt="Le terre irredente italiane" 
                 className="relative rounded-[2rem] shadow-2xl"
               />
             </motion.div>
@@ -194,52 +194,52 @@ const Revanchism: React.FC = () => {
               repeatType: "reverse",
             }}
           >
-            Gli Eventi Chiave
+            I Protagonisti e gli Eventi
           </motion.h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-2 gap-8">
             {[
               { 
                 icon: FaFlag, 
-                title: "Guerra Franco-Prussiana", 
-                text: "Conflitto del 1870-71 che portò alla perdita dell'Alsazia-Lorena",
+                title: "Le Origini dell'Irredentismo", 
+                text: "Il movimento irredentista italiano emerse negli anni '70 dell'Ottocento, sostenendo l'annessione delle 'terre irredente' abitate da italiani ma rimaste sotto il dominio austriaco. Fu un movimento trasversale che coinvolse sia democratici che conservatori, uniti dall'obiettivo di completare l'Unità d'Italia.",
                 details: [
-                  "Battaglia di Sedan (1870)",
-                  "Assedio di Parigi",
-                  "Proclamazione dell'Impero tedesco",
-                  "Armistizio di Versailles"
+                  "1877: Fondazione dell'Associazione in pro dell'Italia Irredenta",
+                  "Matteo Renato Imbriani conia il termine 'terre irredente'",
+                  "Coinvolgimento di intellettuali e studenti",
+                  "Diffusione attraverso giornali e circoli culturali"
                 ]
               },
               { 
                 icon: FaMapMarkedAlt, 
-                title: "Trattato di Francoforte", 
-                text: "Accordo che sancì l'annessione tedesca",
+                title: "Le Terre Contese", 
+                text: "Le principali aree rivendicate erano il Trentino-Alto Adige, la Venezia Giulia, l'Istria e la Dalmazia. Queste regioni, con una significativa presenza di popolazione italiana, erano rimaste sotto il controllo dell'Impero austro-ungarico dopo il 1866.",
                 details: [
-                  "Cessione dell'Alsazia-Lorena",
-                  "Indennità di guerra",
-                  "Occupazione militare",
-                  "Nuovi confini nazionali"
+                  "Trentino-Alto Adige: a maggioranza tedesca con minoranza italiana",
+                  "Venezia Giulia: Trieste, Gorizia, l'Istria",
+                  "Dalmazia: presenza italiana nelle città costiere",
+                  "La questione di Nizza e della Corsica"
                 ]
               },
               { 
                 icon: FaShieldAlt, 
-                title: "Politica di Bismarck", 
-                text: "Strategia per isolare la Francia",
+                title: "La Politica Estera Italiana", 
+                text: "Il governo italiano cercò di bilanciare le aspirazioni irredentiste con la necessità di mantenere buoni rapporti con l'Austria-Ungheria. Questo portò a tensioni interne tra neutralisti e interventisti, specialmente all'avvicinarsi della Prima Guerra Mondiale.",
                 details: [
-                  "Alleanza dei Tre Imperatori",
-                  "Sistema di alleanze",
-                  "Politica di contenimento",
-                  "Diplomazia preventiva"
+                  "1882: Triplice Alleanza con Germania e Austria-Ungheria",
+                  "Tensioni con l'Austria per le questioni irredentiste",
+                  "Ruolo di personaggi come Francesco Crispi",
+                  "L'evoluzione della politica estera italiana"
                 ]
               },
               { 
                 icon: FaBalanceScale, 
-                title: "Tensioni Diplomatiche", 
-                text: "Crisi e confronti tra Francia e Germania",
+                title: "Verso la Grande Guerra", 
+                text: "Lo scoppio della Prima Guerra Mondiale nel 1914 portò a una svolta. L'Italia inizialmente rimase neutrale, ma il movimento irredentista spinse per l'intervento a fianco dell'Intesa, vedendo l'opportunità di annettere le terre irredente.",
                 details: [
-                  "Crisi del 1875",
-                  "Guerra delle tariffe",
-                  "Corsa agli armamenti",
-                  "Propaganda nazionalista"
+                  "1915: Patto di Londra e ingresso in guerra",
+                  "La questione adriatica e Fiume",
+                  "Le conseguenze del Trattato di Saint-Germain",
+                  "L'eredità del revanscismo nel dopoguerra"
                 ]
               }
             ].map((item, index) => (
@@ -307,20 +307,19 @@ const Revanchism: React.FC = () => {
               whileHover={{ scale: 1.02, rotateY: 2 }}
               transition={{ type: "spring", stiffness: 300 }}
             >
-              <h3 className="text-2xl font-playfair mb-4 text-prussian-blue">Impatto Politico</h3>
+              <h3 className="text-2xl font-playfair mb-4 text-prussian-blue">L'Irredentismo e la Prima Guerra Mondiale</h3>
               <p className="text-warm-gray mb-4">
-                Il revanscismo influenzò profondamente la politica europea:
+                Il movimento irredentista italiano raggiunse il suo apice durante la Prima Guerra Mondiale. L'Italia inizialmente rimase neutrale, ma il desiderio di annettere le terre irredente divenne un fattore chiave nella decisione di entrare in guerra a fianco dell'Intesa nel 1915.
               </p>
-              <ul className="text-warm-gray space-y-2">
+              <p className="text-warm-gray mb-4 font-semibold">
+                Le conseguenze principali:
+              </p>
+              <ul className="text-warm-gray space-y-3">
                 {[
-                  "Formazione di alleanze militari",
-                  "Corsa agli armamenti",
-                  "Nazionalismo estremo",
-                  "Politica estera aggressiva",
-                  "Tensioni diplomatiche",
-                  "Propaganda nazionalista",
-                  "Militarizzazione della società",
-                  "Preparazione alla guerra"
+                  "Il Patto di Londra (1915) promise all'Italia il Trentino, il Tirolo meridionale, Trieste e altri territori in cambio del suo intervento in guerra",
+                  "L'ingresso in guerra portò a pesanti perdite umane, con oltre 600.000 vittime italiane",
+                  "La vittoria nella guerra permise l'annessione di Trento, Trieste e dell'Istria, ma non della Dalmazia come sperato",
+                  "Le delusioni post-belliche alimentarono il malcontento che favorì l'ascesa del fascismo"
                 ].map((item, index) => (
                   <motion.li
                     key={index}
@@ -340,20 +339,19 @@ const Revanchism: React.FC = () => {
               whileHover={{ scale: 1.02, rotateY: -2 }}
               transition={{ type: "spring", stiffness: 300 }}
             >
-              <h3 className="text-2xl font-playfair mb-4 text-prussian-blue">Impatto Sociale</h3>
+              <h3 className="text-2xl font-playfair mb-4 text-prussian-blue">Una Società che Cambia</h3>
               <p className="text-warm-gray mb-4">
-                Le conseguenze sociali del revanscismo furono significative:
+                Il revanscismo non rimase confinato nei palazzi del potere: penetrò in ogni aspetto della vita quotidiana, plasmando il modo in cui le persone pensavano, sentivano e vivevano la loro identità nazionale.
               </p>
-              <ul className="text-warm-gray space-y-2">
+              <p className="text-warm-gray mb-4 font-semibold">
+                La vita delle persone comuni cambiò radicalmente:
+              </p>
+              <ul className="text-warm-gray space-y-3">
                 {[
-                  "Nazionalizzazione delle masse",
-                  "Propaganda patriottica",
-                  "Educazione militarizzata",
-                  "Cultura della vendetta",
-                  "Identità nazionale",
-                  "Memoria collettiva",
-                  "Tradizioni militari",
-                  "Simboli nazionali"
+                  "A scuola di patriottismo: I bambini imparavano la storia come una successione di sconfitte da vendicare, con mappe che mostravano i 'territori perduti' da riconquistare",
+                  "La stampa fomentava l'odio: I giornali dipingevano costantemente la nazione vicina come il nemico da sconfiggere, alimentando un clima di sospetto e ostilità",
+                  "L'esercito divenne un modello: Il servizio militare obbligatorio trasformò milioni di cittadini in soldati, mentre le parate militari diventavano il principale intrattenimento popolare",
+                  "Una generazione cresciuta nell'odio: I giovani venivano educati a vedere la guerra non come una tragedia, ma come un'opportunità per riscattare l'onore nazionale"
                 ].map((item, index) => (
                   <motion.li
                     key={index}
@@ -396,34 +394,34 @@ const Revanchism: React.FC = () => {
               { 
                 icon: FaBook, 
                 title: "Letteratura", 
-                text: "Influenza sulla cultura e le arti",
+                text: "L'irredentismo nella letteratura italiana",
                 details: [
-                  "Romanzi patriottici",
-                  "Poesia nazionalista",
-                  "Teatro politico",
-                  "Giornalismo militante"
+                  "Le opere di Giosuè Carducci e Giovanni Pascoli",
+                  "I romanzi di Gabriele D'Annunzio",
+                  "La poesia patriottica e civile",
+                  "I manifesti politico-letterari"
                 ]
               },
               { 
                 icon: FaPalette, 
                 title: "Arti Visive", 
-                text: "Rappresentazioni artistiche",
+                text: "L'arte al servizio dell'irredentismo",
                 details: [
-                  "Pittura storica",
-                  "Monumenti commemorativi",
-                  "Cartografia politica",
-                  "Simboli nazionali"
+                  "I pittori del Divisionismo italiano",
+                  "I monumenti ai caduti delle terre irredente",
+                  "La cartografia propagandistica",
+                  "I manifesti e la grafica politica"
                 ]
               },
               { 
                 icon: FaMusic, 
-                title: "Musica", 
-                text: "Espressione musicale",
+                title: "Musica e Teatro", 
+                text: "La cultura popolare e l'identità nazionale",
                 details: [
-                  "Inni nazionali",
-                  "Marce militari",
-                  "Opera patriottica",
-                  "Canzoni popolari"
+                  "Le canzoni popolari irredentiste",
+                  "Le opere liriche di ispirazione risorgimentale",
+                  "Le marce militari e gli inni",
+                  "Il teatro di propaganda patriottica"
                 ]
               }
             ].map((item, index) => (
@@ -485,74 +483,36 @@ const Revanchism: React.FC = () => {
           >
             L'Eredità
           </motion.h2>
-          <div className="grid md:grid-cols-2 gap-12">
-            <motion.div 
-              className="prose prose-lg backdrop-blur-md bg-white/10 p-8 rounded-[2rem] border border-white/20 shadow-2xl hover:shadow-3xl transition-all duration-300"
-              whileHover={{ scale: 1.02, rotateY: 2 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
-              <h3 className="text-2xl font-playfair mb-4 text-prussian-blue">Conseguenze a Lungo Termine</h3>
-              <p className="text-warm-gray mb-4">
-                Il revanscismo lasciò un'eredità duratura:
-              </p>
-              <ul className="text-warm-gray space-y-2">
-                {[
-                  "Prima Guerra Mondiale",
-                  "Trattato di Versailles",
-                  "Seconda Guerra Mondiale",
-                  "Integrazione europea",
-                  "Riconciliazione franco-tedesca",
-                  "Unione Europea",
-                  "Memoria storica",
-                  "Lezioni per il futuro"
-                ].map((item, index) => (
-                  <motion.li
-                    key={index}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.1 }}
-                    whileHover={{ x: 10 }}
-                  >
-                    {item}
-                  </motion.li>
-                ))}
-              </ul>
-            </motion.div>
-            <motion.div 
-              className="prose prose-lg backdrop-blur-md bg-white/10 p-8 rounded-[2rem] border border-white/20 shadow-2xl hover:shadow-3xl transition-all duration-300"
-              whileHover={{ scale: 1.02, rotateY: -2 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
-              <h3 className="text-2xl font-playfair mb-4 text-prussian-blue">Lezioni per il Presente</h3>
-              <p className="text-warm-gray mb-4">
-                Il revanscismo offre importanti insegnamenti:
-              </p>
-              <ul className="text-warm-gray space-y-2">
-                {[
-                  "Importanza della diplomazia",
-                  "Pericoli del nazionalismo",
-                  "Valore della cooperazione",
-                  "Necessità di compromesso",
-                  "Gestione dei conflitti",
-                  "Memoria storica",
-                  "Riconciliazione",
-                  "Pace duratura"
-                ].map((item, index) => (
-                  <motion.li
-                    key={index}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.1 }}
-                    whileHover={{ x: 10 }}
-                  >
-                    {item}
-                  </motion.li>
-                ))}
-              </ul>
-            </motion.div>
-          </div>
+          <motion.div 
+            className="prose prose-lg backdrop-blur-md bg-white/10 p-8 rounded-[2rem] border border-white/20 shadow-2xl hover:shadow-3xl transition-all duration-300 max-w-4xl mx-auto"
+            whileHover={{ scale: 1.01 }}
+            transition={{ type: "spring", stiffness: 300 }}
+          >
+            <h3 className="text-2xl font-playfair mb-4 text-prussian-blue">L'Eredità dell'Irredentismo</h3>
+            <p className="text-warm-gray mb-4">
+              L'irredentismo ha lasciato un'impronta profonda nella storia d'Italia, con conseguenze che si protraggono fino a oggi:
+            </p>
+            <ul className="text-warm-gray space-y-2">
+              {[
+                "La questione del confine orientale e la memoria delle foibe",
+                "L'influenza sul nazionalismo italiano",
+                "Il dibattito storiografico",
+                "La tutela delle minoranze linguistiche",
+                "Le commemorazioni e la memoria storica"
+              ].map((item, index) => (
+                <motion.li
+                  key={index}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  whileHover={{ x: 10 }}
+                >
+                  {item}
+                </motion.li>
+              ))}
+            </ul>
+          </motion.div>
         </motion.section>
       </div>
     </div>

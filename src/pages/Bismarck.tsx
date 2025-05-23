@@ -183,9 +183,28 @@ const Bismarck: React.FC = () => {
               repeatType: "reverse",
             }}
           >
-            
+            Chi è
           </motion.h2>
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          
+          {/* Chi è Section */}
+          <motion.div 
+            className="prose prose-lg backdrop-blur-md bg-white/10 p-8 rounded-[2rem] border border-white/20 shadow-2xl mb-12 w-full"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+          >
+            <h3 className="text-3xl font-playfair mb-6 text-prussian-blue">Otto von Bismarck</h3>
+            <p className="text-warm-gray text-lg leading-relaxed">
+              Otte von Bismarck fu il cancelliere prussiano che guidò il processo di unificazione della Germania nel 1871, dando vita al Secondo Reich. Rimase al potere fino al 1890 e sotto la sua guida la Germania divenne una grande potenza militare, economica e politica. Abile stratega, fu il principale artefice della supremazia tedesca sull'Europa continentale nella seconda metà dell'Ottocento.
+            </p>
+          </motion.div>
+
+          <h2 className="text-4xl font-playfair mb-8 text-prussian-blue">
+            Politica e Strategia
+          </h2>
+          
+          <div className="grid md:grid-cols-2 gap-12 items-start">
             <motion.div 
               className="prose prose-lg backdrop-blur-md bg-white/10 p-8 rounded-[2rem] border border-white/20 shadow-2xl"
               whileHover={{ scale: 1.02 }}

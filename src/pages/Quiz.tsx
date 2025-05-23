@@ -12,6 +12,7 @@ interface Question {
 }
 
 const questions: Question[] = [
+  // Domande su Bismarck e la sua politica
   {
     id: 1,
     question: "Quale fu il principale obiettivo della politica estera di Bismarck?",
@@ -48,6 +49,8 @@ const questions: Question[] = [
     correctAnswer: 1,
     explanation: "La guerra franco-prussiana portò alla proclamazione dell'Impero tedesco nella Sala degli Specchi di Versailles."
   },
+  
+  // Domande sulla politica interna
   {
     id: 4,
     question: "Quale fu la principale sfida interna che Bismarck dovette affrontare?",
@@ -62,6 +65,20 @@ const questions: Question[] = [
   },
   {
     id: 5,
+    question: "Quale fu l'obiettivo principale della Kulturkampf?",
+    options: [
+      "Limitare l'influenza della Chiesa Cattolica",
+      "Combattere il socialismo",
+      "Promuovere l'industrializzazione",
+      "Espandere le colonie"
+    ],
+    correctAnswer: 0,
+    explanation: "La Kulturkampf (lotta culturale) fu una campagna di Bismarck per limitare l'influenza della Chiesa Cattolica in Germania."
+  },
+  
+  // Domande sulla politica estera
+  {
+    id: 6,
     question: "Quale fu il sistema di alleanze creato da Bismarck?",
     options: [
       "La Triplice Intesa",
@@ -73,43 +90,7 @@ const questions: Question[] = [
     explanation: "Bismarck creò la Triplice Alleanza tra Germania, Austria-Ungheria e Italia per mantenere l'equilibrio europeo."
   },
   {
-    id: 6,
-    question: "In quale anno fu proclamato l'Impero Tedesco?",
-    options: [
-      "1866",
-      "1871",
-      "1878",
-      "1890"
-    ],
-    correctAnswer: 1,
-    explanation: "L'Impero Tedesco fu proclamato il 18 gennaio 1871 nella Sala degli Specchi di Versailles."
-  },
-  {
     id: 7,
-    question: "Quale fu l'obiettivo principale della Kulturkampf?",
-    options: [
-      "Limitare l'influenza della Chiesa Cattolica",
-      "Combattere il socialismo",
-      "Promuovere l'industrializzazione",
-      "Espandere le colonie"
-    ],
-    correctAnswer: 0,
-    explanation: "La Kulturkampf (lotta culturale) fu una campagna di Bismarck per limitare l'influenza della Chiesa Cattolica in Germania."
-  },
-  {
-    id: 8,
-    question: "Quale fu il Congresso di Berlino del 1878?",
-    options: [
-      "Un incontro per risolvere la questione balcanica",
-      "Una conferenza sul commercio internazionale",
-      "Un summit sulla questione coloniale",
-      "Un congresso sulla riforma sociale"
-    ],
-    correctAnswer: 0,
-    explanation: "Il Congresso di Berlino del 1878 fu convocato da Bismarck per risolvere la questione balcanica e rivedere il Trattato di Santo Stefano."
-  },
-  {
-    id: 9,
     question: "Quale fu la politica di Bismarck verso le colonie?",
     options: [
       "Promosse attivamente l'espansione coloniale",
@@ -120,6 +101,36 @@ const questions: Question[] = [
     correctAnswer: 1,
     explanation: "Bismarck fu inizialmente contrario all'espansione coloniale, temendo che potesse complicare le relazioni europee."
   },
+  
+  // Domande sull'Impero Tedesco
+  {
+    id: 8,
+    question: "In quale anno fu proclamato l'Impero Tedesco?",
+    options: [
+      "1866",
+      "1871",
+      "1878",
+      "1890"
+    ],
+    correctAnswer: 1,
+    explanation: "L'Impero Tedesco fu proclamato il 18 gennaio 1871 nella Sala degli Specchi di Versailles."
+  },
+  
+  // Domande sul Congresso di Berlino
+  {
+    id: 9,
+    question: "Quale fu il Congresso di Berlino del 1878?",
+    options: [
+      "Un incontro per risolvere la questione balcanica",
+      "Una conferenza sul commercio internazionale",
+      "Un summit sulla questione coloniale",
+      "Un congresso sulla riforma sociale"
+    ],
+    correctAnswer: 0,
+    explanation: "Il Congresso di Berlino del 1878 fu convocato da Bismarck per risolvere la questione balcanica e rivedere il Trattato di Santo Stefano."
+  },
+  
+  // Domande sul sistema politico
   {
     id: 10,
     question: "Quale fu il sistema elettorale introdotto da Bismarck?",
@@ -132,6 +143,8 @@ const questions: Question[] = [
     correctAnswer: 0,
     explanation: "Bismarck introdusse il suffragio universale maschile per il Reichstag, sebbene con poteri limitati."
   },
+  
+  // Domande sulle conseguenze della caduta di Bismarck
   {
     id: 11,
     question: "Quale fu la principale conseguenza della caduta di Bismarck?",
@@ -144,53 +157,33 @@ const questions: Question[] = [
     correctAnswer: 1,
     explanation: "La caduta di Bismarck portò a un significativo cambio nella politica estera tedesca, abbandonando il suo sistema di alleanze."
   },
+  
+  // Nuove domande sulla politica interna
   {
     id: 12,
-    question: "Quale fu il Congresso di Berlino del 1878?",
+    question: "Quale fu l'obiettivo delle leggi anti-socialiste di Bismarck?",
     options: [
-      "Un incontro per risolvere la questione balcanica",
-      "Una conferenza sul commercio internazionale",
-      "Un summit sulla questione coloniale",
-      "Un congresso sulla riforma sociale"
+      "Limitare l'influenza del movimento operaio",
+      "Promuovere i sindacati",
+      "Rafforzare i partiti di sinistra",
+      "Aumentare i salari degli operai"
     ],
     correctAnswer: 0,
-    explanation: "Il Congresso di Berlino del 1878 fu convocato da Bismarck per risolvere la questione balcanica e rivedere il Trattato di Santo Stefano."
+    explanation: "Le leggi anti-socialiste miravano a limitare l'influenza del movimento operaio e del Partito Socialdemocratico."
   },
+  
+  // Domande sul revanscismo
   {
     id: 13,
-    question: "Quale fu la politica di Bismarck verso le colonie?",
+    question: "Cosa si intendeva con il termine 'terre irredente' nel contesto dell'irredentismo italiano?",
     options: [
-      "Promosse attivamente l'espansione coloniale",
-      "Fu inizialmente contrario all'espansione coloniale",
-      "Non si interessò mai alle colonie",
-      "Sostenne solo le colonie in Africa"
+      "Territori italiani occupati dalla Francia",
+      "Territori a maggioranza italiana sotto il dominio austriaco",
+      "Colonie italiane in Africa",
+      "Regioni appena annesse al Regno d'Italia"
     ],
     correctAnswer: 1,
-    explanation: "Bismarck fu inizialmente contrario all'espansione coloniale, temendo che potesse complicare le relazioni europee."
-  },
-  {
-    id: 14,
-    question: "Quale fu il sistema elettorale introdotto da Bismarck?",
-    options: [
-      "Suffragio universale maschile",
-      "Suffragio censitario",
-      "Suffragio per classi",
-      "Suffragio indiretto"
-    ],
-    correctAnswer: 0,
-    explanation: "Bismarck introdusse il suffragio universale maschile per il Reichstag, sebbene con poteri limitati."
-  },
-  {
-    id: 15,
-    question: "Quale fu la principale conseguenza della caduta di Bismarck?",
-    options: [
-      "La fine dell'Impero Tedesco",
-      "Un cambio nella politica estera tedesca",
-      "La rivoluzione tedesca",
-      "La perdita delle colonie"
-    ],
-    correctAnswer: 1,
-    explanation: "La caduta di Bismarck portò a un significativo cambio nella politica estera tedesca, abbandonando il suo sistema di alleanze."
+    explanation: "Le 'terre irredente' erano territori abitati in maggioranza da popolazioni italofone ma che rimanevano sotto il dominio austriaco dopo l'Unità d'Italia, come il Trentino-Alto Adige, la Venezia Giulia e l'Istria."
   }
 ];
 

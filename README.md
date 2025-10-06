@@ -23,9 +23,19 @@ Un sito web interattivo dedicato alla storia della Germania durante il periodo d
 
 ## Requisiti
 
+- Git (per clonare il progetto, in alternativa scaricare zip da GitHub -> https://github.com/axpico/la-germania-di-Bismarck/archive/refs/heads/main.zip)
 - Node.js 20 o superiore
 - Docker e Docker Compose (per lo sviluppo in container)
-- npm o yarn
+- npm o yarn:
+  
+Linux:
+- Installa `git`, `npm` e `yarn` dal tuo package manager
+
+Windows:
+- Apri PowerShell
+- ```batch
+  winget install -e --id Yarn.Yarn;winget install -e --id Git.Git;winget install -e --id OpenJS.NodeJS
+  ```
 
 ## Installazione
 
@@ -33,7 +43,7 @@ Un sito web interattivo dedicato alla storia della Germania durante il periodo d
 
 1. Clona il repository:
    ```bash
-   git clone https://github.com/tuousername/la-germania-di-bismarck.git
+   git clone https://github.com/axpico/la-germania-di-Bismarck.git
    cd la-germania-di-bismarck
    ```
 
